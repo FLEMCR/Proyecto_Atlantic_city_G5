@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142b45">
+  <title>Atlantic City | Gestión de clientes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M7 17c8-7 16-7 24-1M7 24c8-7 16-7 24-1M7 31c8-7 16-7 24-1"/></svg></div>
+      <div class="brand-copy"><strong>ATLANTIC CITY</strong><span>GESTIÓN DE CLIENTES</span></div>
+    </div>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <button class="nav-link active" data-view="home"><span class="nav-icon">⌂</span><span>Inicio</span></button>
+      <button class="nav-link" data-view="clients"><span class="nav-icon">◎</span><span>Clientes</span></button>
+      <button class="nav-link" data-view="visits"><span class="nav-icon">↻</span><span>Visitas e interacciones</span></button>
+      <button class="nav-link" data-view="incidents"><span class="nav-icon">!</span><span>Incidencias</span></button>
+      <button class="nav-link" data-view="segments"><span class="nav-icon">◈</span><span>Segmentación</span></button>
+      <button class="nav-link" data-view="promotions"><span class="nav-icon">✦</span><span>Promociones y campañas</span></button>
+      <button class="nav-link" data-view="reports"><span class="nav-icon">▤</span><span>Reportes</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-note"><span class="tiny-dot"></span><span>Datos guardados en este navegador</span></div>
+      <div class="sidebar-footer"><span class="footer-wave">≈</span><span>Atlantic City<br><small>Clientes · Servicio · Marketing</small></span></div>
+    </div>
+  </aside>
+
+  <div class="main-shell">
+    <header class="topbar">
+      <button class="mobile-menu" id="menu-toggle" aria-label="Abrir menú">☰</button>
+      <label class="global-search"><span class="search-glass" aria-hidden="true"></span><input id="global-search" type="search" placeholder="Buscar clientes…" autocomplete="off"></label>
+      <div class="topbar-right"><span class="demo-label">Datos de demostración</span><span class="today-label" id="today-label"></span><span class="user-badge"><span class="avatar">AC</span><span><strong>Equipo CRM</strong><small>Panel de gestión</small></span></span></div>
+    </header>
+
+    <main class="content">
+      <section class="view active" id="view-home">
+        <div class="eyebrow">Panel principal</div>
+        <div class="page-heading"><div><h1>Gestión de clientes</h1><p>Consulta perfiles, registra actividad y organiza campañas y promociones.</p></div><button class="button button-primary" data-go="clients">＋ Nuevo cliente</button></div>
+        <div class="metric-grid">
+          <article class="metric-card accent-blue"><div class="metric-label">Clientes registrados</div><div class="metric-value" id="stat-clients">0</div><div class="metric-foot">Perfiles en la base local</div></article>
+          <article class="metric-card accent-teal"><div class="metric-label">Visitas e interacciones</div><div class="metric-value" id="stat-visits">0</div><div class="metric-foot">Registros asociados a perfiles</div></article>
+          <article class="metric-card accent-amber"><div class="metric-label">Incidencias registradas</div><div class="metric-value" id="stat-incidents">0</div><div class="metric-foot">Casos ingresados</div></article>
+          <article class="metric-card accent-purple"><div class="metric-label">Promociones registradas</div><div class="metric-value" id="stat-promos">0</div><div class="metric-foot">Ofertas concretas registradas</div></article>
+        </div>
+        <div class="home-grid">
+          <section class="panel panel-large">
+            <div class="panel-heading"><div><h2>Clientes recientes</h2><p>Perfiles añadidos o actualizados recientemente.</p></div><button class="text-button" data-go="clients">Ver clientes <span>→</span></button></div>
+            <div class="table-wrap"><table><thead><tr><th>Identificador</th><th>Cliente</th><th>Actividad</th><th>Clasificación</th><th>Preferencias de juegos</th></tr></thead><tbody id="home-client-rows"></tbody></table></div>
+          </section>
+          <section class="panel criteria-panel">
+            <div class="panel-heading"><div><h2>Criterios para segmentar</h2><p>Información consultada en el perfil.</p></div><span class="soft-tag">4 criterios</span></div>
+            <ul class="criteria-list"><li><span class="criterion-number">01</span><span>Frecuencia de visitas</span></li><li><span class="criterion-number">02</span><span>Nivel de gasto</span></li><li><span class="criterion-number">03</span><span>Preferencias de juegos</span></li><li><span class="criterion-number">04</span><span>Historial de promociones</span></li></ul>
+            <p class="hint">La clasificación se registra manualmente hasta que se acuerden las reglas.</p>
+            <button class="button button-secondary button-wide" data-go="segments">Consultar clientes</button>
+          </section>
+          <section class="panel activity-panel">
+            <div class="panel-heading"><div><h2>Actividad reciente</h2><p>Visitas, incidencias, revisiones y constancias locales.</p></div><button class="text-button" data-go="visits">Ver actividad <span>→</span></button></div>
+            <div id="home-activity" class="activity-list"></div>
+          </section>
+          <section class="panel promo-panel">
+            <div class="panel-heading"><div><h2>Promociones y campañas</h2><p>Registros disponibles para consulta.</p></div><button class="text-button" data-go="promotions">Ver todas <span>→</span></button></div>
+            <div id="home-promotions" class="compact-promo-list"></div><p class="hint marketing-rule-note">Elegibilidad manual: “No aplica” no registra comunicación; “Aplica” crea una constancia local, no un mensaje enviado.</p>
+          </section>
+        </div>
+        <div class="quick-actions"><strong>Accesos rápidos</strong><button data-go="visits">＋ Registrar visita</button><button data-go="incidents">＋ Registrar incidencia</button><button data-go="promotions">＋ Registrar promoción</button></div>
+      </section>
+
+      <section class="view" id="view-clients">
+        <div class="eyebrow">Perfiles</div>
+        <div class="page-heading"><div><h1>Clientes</h1><p>Registra, consulta y actualiza perfiles.</p></div><button class="button button-primary" id="toggle-client-form">＋ Nuevo cliente</button></div>
+        <section class="panel form-panel hidden" id="client-form-panel"><div class="panel-heading"><div><h2 id="client-form-title">Registrar cliente</h2><p>Completa los campos definidos para el perfil.</p></div><button class="icon-button" type="button" id="close-client-form" aria-label="Cerrar">×</button></div>
+          <form id="client-form"><input type="hidden" id="client-edit-key"><div class="form-grid">
+            <label>Identificador de referencia *<input id="client-code" required maxlength="32" placeholder="Ej. AC-001"></label>
+            <label>Nombre del cliente *<input id="client-name" required maxlength="90" placeholder="Nombre para el perfil"></label>
+            <label>Nivel de gasto (dato disponible)<input id="client-spend" maxlength="80" placeholder="Dato ingresado / por definir"></label>
+            <label>Preferencias de juegos<input id="client-games" maxlength="120" placeholder="Dato ingresado / por definir"></label>
+            <label class="full-field">Clasificación manual (opcional)<input id="client-segment" maxlength="60" placeholder="Escribe la etiqueta acordada; no se calcula automáticamente"></label>
+          </div><div class="form-actions"><button class="button button-primary" type="submit" id="client-submit">Guardar perfil</button><button class="button button-ghost" type="button" id="cancel-client-form">Cancelar</button></div></form>
+        </section>
+        <section class="panel"><div class="panel-heading"><div><h2>Base de clientes</h2><p id="client-count-label">Perfiles registrados</p></div></div>
+          <div class="toolbar"><label class="search-field"><span class="search-glass" aria-hidden="true"></span><input id="client-search" type="search" placeholder="Buscar por identificador, nombre o preferencia…"></label><select id="client-segment-filter" aria-label="Filtrar por clasificación"><option value="">Todas las clasificaciones</option></select></div>
+          <div class="table-wrap"><table><thead><tr><th>Identificador</th><th>Nombre</th><th>Actividad</th><th>Nivel de gasto</th><th>Preferencias de juegos</th><th>Clasificación</th><th></th></tr></thead><tbody id="client-rows"></tbody></table></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-visits">
+        <div class="eyebrow">Historial de atención</div><div class="page-heading"><div><h1>Visitas e interacciones</h1><p>Registra cada visita o interacción vinculada a un perfil.</p></div></div>
+        <div class="split-grid"><section class="panel"><div class="panel-heading"><div><h2>Registrar actividad</h2><p>El registro permanece asociado al cliente aunque no haya promoción.</p></div></div>
+          <form id="visit-form"><div class="form-grid"><label class="full-field">Cliente *<select id="visit-client" required></select></label><label>Tipo de actividad<select id="visit-kind"><option>Visita</option><option>Interacción</option></select></label><label>Fecha<input id="visit-date" type="date" required></label><label class="full-field">Nota de atención (opcional)<textarea id="visit-note" rows="3" maxlength="400" placeholder="Detalle breve de la actividad"></textarea></label></div><div class="form-actions"><button class="button button-primary" type="submit">Guardar actividad</button></div></form>
+        </section><section class="panel note-panel"><div class="panel-heading"><div><h2>Historial por cliente</h2><p>Usa la búsqueda para revisar actividad registrada.</p></div></div><label class="search-field"><span class="search-glass" aria-hidden="true"></span><input id="visit-search" type="search" placeholder="Buscar cliente o nota…"></label><div class="summary-note"><strong>Importante</strong><span>Una visita o interacción se conserva en el historial tanto si se reporta una incidencia como si no.</span></div></section></div>
+        <section class="panel"><div class="panel-heading"><div><h2>Actividad registrada</h2><p id="visit-count-label"></p></div></div><div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Cliente</th><th>Tipo</th><th>Nota</th></tr></thead><tbody id="visit-rows"></tbody></table></div></section>
+      </section>
+
+      <section class="view" id="view-incidents">
+        <div class="eyebrow">Seguimiento</div><div class="page-heading"><div><h1>Incidencias</h1><p>Registra una incidencia reportada y añade notas de seguimiento.</p></div></div>
+        <div class="split-grid"><section class="panel"><div class="panel-heading"><div><h2>Nueva incidencia</h2><p>Vincula el caso al perfil cuando esté disponible.</p></div></div>
+          <form id="incident-form"><div class="form-grid"><label class="full-field">Cliente<select id="incident-client"></select></label><label class="full-field">Descripción de la incidencia *<textarea id="incident-description" required rows="4" maxlength="500" placeholder="Describe brevemente lo reportado"></textarea></label><label class="full-field">Nota inicial de seguimiento (opcional)<textarea id="incident-followup" rows="3" maxlength="400" placeholder="Anota información confirmada"></textarea></label></div><div class="form-actions"><button class="button button-primary" type="submit">Guardar incidencia</button></div></form>
+        </section><section class="panel note-panel"><div class="panel-heading"><div><h2>Registro de seguimiento</h2><p>El MVP no impone categorías ni plazos predefinidos.</p></div></div><div class="summary-note"><strong>Seguimiento flexible</strong><span>Los estados, responsables y tiempos se pueden definir con el Product Owner. Aquí se guardan la descripción y las notas ingresadas.</span></div></section></div>
+        <section class="panel"><div class="panel-heading"><div><h2>Incidencias registradas</h2><p>Consulta los casos y sus notas.</p></div></div><div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Cliente</th><th>Descripción</th><th>Seguimiento</th><th></th></tr></thead><tbody id="incident-rows"></tbody></table></div></section>
+      </section>
+
+      <section class="view" id="view-segments">
+        <div class="eyebrow">Criterios de consulta</div><div class="page-heading"><div><h1>Segmentación</h1><p>Consulta los cuatro insumos y registra una etiqueta manual si corresponde.</p></div></div>
+        <section class="panel"><div class="panel-heading"><div><h2>Consultar perfil y clasificar</h2><p>Esta versión no aplica una fórmula automática ni umbrales inventados.</p></div></div>
+          <form id="segment-form" class="segment-form"><label>Cliente<select id="segment-client" required></select></label><div class="criteria-grid" id="segment-criteria"></div><label>Etiqueta manual del segmento<input id="segment-label" maxlength="60" placeholder="Etiqueta acordada"></label><button class="button button-primary" type="submit">Guardar etiqueta</button></form>
+        </section>
+        <section class="panel"><div class="panel-heading"><div><h2>Perfiles y criterios disponibles</h2><p>Se muestran las visitas registradas; el periodo para interpretar la frecuencia aún debe confirmarse. Los demás valores provienen del perfil o historial.</p></div></div><div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Visitas registradas (periodo por definir)</th><th>Nivel de gasto</th><th>Preferencias de juegos</th><th>Historial de promociones</th><th>Etiqueta manual</th></tr></thead><tbody id="segment-rows"></tbody></table></div></section>
+      </section>
+
+      <section class="view" id="view-promotions">
+        <div class="eyebrow">Marketing</div><div class="page-heading"><div><h1>Campañas y promociones</h1><p>Se administran como registros distintos: una campaña organiza una iniciativa; una promoción es la oferta concreta.</p></div></div>
+        <div class="split-grid">
+          <section class="panel"><div class="panel-heading"><div><h2>Registrar campaña</h2><p>Objetivo, público y periodo se completan según lo confirmado.</p></div></div>
+            <form id="campaign-form"><div class="form-grid">
+              <label class="full-field">Nombre de la campaña *<input id="campaign-name" required maxlength="100" placeholder="Nombre de la campaña"></label>
+              <label class="full-field">Objetivo (opcional)<textarea id="campaign-objective" rows="2" maxlength="300" placeholder="Objetivo definido para la campaña"></textarea></label>
+              <label class="full-field">Público y criterios (opcional)<textarea id="campaign-audience" rows="2" maxlength="300" placeholder="Criterios confirmados o pendientes"></textarea></label>
+              <label class="full-field">Periodo o vigencia (opcional)<input id="campaign-period" maxlength="100" placeholder="Periodo acordado, si corresponde"></label>
+            </div><p class="hint">Guardar una campaña aquí no significa que esté aprobada ni publicada. El mecanismo de aprobación debe confirmarlo el Product Owner.</p><div class="form-actions"><button class="button button-primary" type="submit">Guardar campaña</button></div></form>
+          </section>
+          <section class="panel"><div class="panel-heading"><div><h2>Registrar promoción</h2><p>La oferta concreta puede relacionarse con una campaña.</p></div></div>
+            <form id="promotion-form"><div class="form-grid">
+              <label class="full-field">Nombre de la promoción *<input id="promotion-name" required maxlength="100" placeholder="Nombre de la oferta"></label>
+              <label class="full-field">Campaña relacionada (opcional)<select id="promotion-campaign"><option value="">Sin campaña vinculada</option></select></label>
+              <label class="full-field">Criterios de aplicación (opcional)<textarea id="promotion-criteria" rows="2" maxlength="300" placeholder="Criterios confirmados; no agregues umbrales no acordados"></textarea></label>
+              <label class="full-field">Descripción (opcional)<textarea id="promotion-description" rows="2" maxlength="400" placeholder="Descripción de la oferta"></textarea></label>
+            </div><div class="form-actions"><button class="button button-secondary" type="submit">Guardar promoción</button></div></form>
+          </section>
+        </div>
+        <div class="split-grid">
+          <section class="panel"><div class="panel-heading"><div><h2>Registrar resultado de elegibilidad</h2><p>La regla se confirma con el PO; el MVP no la calcula automáticamente.</p></div></div>
+            <form id="eligibility-form"><div class="form-grid">
+              <label>Promoción *<select id="eligibility-promotion" required></select></label>
+              <label>Cliente *<select id="eligibility-client" required></select></label>
+              <label class="full-field">Resultado de revisión *<select id="eligibility-result" required><option value="">Selecciona un resultado</option><option value="aplica">Aplica — validación manual según la regla aprobada</option><option value="no-aplica">No aplica</option></select></label>
+              <label class="full-field">Nota (opcional)<textarea id="eligibility-note" rows="2" maxlength="300" placeholder="Observación de la revisión"></textarea></label>
+            </div><p class="hint">Si el resultado es “No aplica”, se guarda la revisión, pero no se registra comunicación. Si aplica, se crea una constancia local: no se envía correo ni mensaje.</p><div class="form-actions"><button class="button button-primary" type="submit">Guardar resultado</button></div></form>
+          </section>
+          <section class="panel note-panel"><div class="panel-heading"><div><h2>Historial de promociones</h2><p>Una constancia local no demuestra que una oferta real se haya enviado o canjeado.</p></div></div>
+            <div class="summary-note"><strong>Regla del proceso</strong><span>La visita e interacción se conservan aunque la promoción no aplique. Solo se registra una comunicación cuando la revisión manual indica “Aplica”.</span></div>
+          </section>
+        </div>
+        <section class="panel"><div class="panel-heading"><div><h2>Campañas registradas</h2><p>La campaña es una planificación independiente del recorrido de atención.</p></div></div><div class="table-wrap"><table><thead><tr><th>Campaña</th><th>Objetivo</th><th>Público / criterios</th><th>Periodo</th><th>Registro</th></tr></thead><tbody id="campaign-rows"></tbody></table></div></section>
+        <section class="panel"><div class="panel-heading"><div><h2>Promociones registradas</h2><p>Ofertas concretas y su relación con campañas.</p></div></div><div class="table-wrap"><table><thead><tr><th>Promoción</th><th>Campaña</th><th>Criterios</th><th>Descripción</th><th>Fecha de registro</th></tr></thead><tbody id="promotion-rows"></tbody></table></div></section>
+        <section class="panel"><div class="panel-heading"><div><h2>Revisiones y comunicaciones registradas</h2><p>Las revisiones “No aplica” no crean una comunicación.</p></div></div><div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Cliente</th><th>Promoción</th><th>Resultado</th><th>Nota</th><th>Constancia</th></tr></thead><tbody id="eligibility-rows"></tbody></table></div></section>
+      </section>
+
+      <section class="view" id="view-reports">
+        <div class="eyebrow">Consulta de información</div><div class="page-heading"><div><h1>Reportes</h1><p>Resumen de los registros existentes y exportación de datos.</p></div><button class="button button-primary" id="export-report">Descargar CSV</button></div>
+        <div class="metric-grid report-metrics"><article class="metric-card accent-blue"><div class="metric-label">Clientes</div><div class="metric-value" id="report-clients">0</div></article><article class="metric-card accent-teal"><div class="metric-label">Visitas e interacciones</div><div class="metric-value" id="report-visits">0</div></article><article class="metric-card accent-amber"><div class="metric-label">Incidencias</div><div class="metric-value" id="report-incidents">0</div></article><article class="metric-card accent-purple"><div class="metric-label">Constancias locales</div><div class="metric-value" id="report-communications">0</div></article></div>
+        <div class="home-grid"><section class="panel"><div class="panel-heading"><div><h2>Clientes por etiqueta manual</h2><p>La etiqueta no se calcula automáticamente.</p></div></div><div id="report-segments" class="bar-list"></div></section><section class="panel"><div class="panel-heading"><div><h2>Actividad reciente</h2><p>Datos obtenidos de los registros locales.</p></div></div><div id="report-activity" class="activity-list"></div></section></div>
+        <section class="panel"><div class="panel-heading"><div><h2>Registros de marketing</h2><p>Campañas, promociones y constancias se cuentan por separado.</p></div></div><div class="table-wrap"><table><thead><tr><th>Tipo de registro</th><th>Cantidad</th><th>Observación</th></tr></thead><tbody id="report-marketing-types"></tbody></table></div></section>
+        <p class="hint report-note">Los indicadores muestran los datos guardados en este navegador. No incluye ingresos, reservas ni métricas que no hayan sido definidas para el proyecto. La automatización opcional no forma parte de este MVP.</p>
+      </section>
+    </main>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
