@@ -1,278 +1,179 @@
-# Scrum desde cero — guía para el equipo Atlantic City
+# Scrum para el equipo Atlantic City
 
-**Contexto confirmado:** el profesor es el Product Owner; son cuatro Developers; usarán Jira y Discord; cada Sprint será de una semana y disponen de un máximo de cuatro o cinco Sprints. Esta guía explica el proceso para leerla y consultarla durante el proyecto.
+## 1. Contexto y propósito
 
-**Modelo de negocio del piloto:** el equipo mantiene un BPMN principal integrado, con cuatro rutas independientes y eventos de inicio de tipos distintos. El subproceso embebido de segmentación se muestra colapsado en esa vista y se explica con sus cinco tareas en un diagrama de detalle independiente. La [Guía principal de Atlantic City] explica los diagramas, las áreas, los detalles técnicos y el glosario. El [Product Backlog] detalla las historias y criterios. El profesor confirma las prioridades del backlog.
+El equipo está formado por **cuatro Developers**. El profesor desempeña el rol de **Product Owner (PO)** y confirma prioridades y reglas del producto. El plan recibido organiza cuatro Sprints de una semana; el equipo debe revisar el trabajo posible y mantener visible cualquier cambio.
 
+Esta guía explica cómo coordinarse para que el trabajo no dependa de una sola persona, las decisiones no se pierdan en conversaciones y los cuatro integrantes puedan explicar el proceso, el código, las pruebas y las limitaciones.
 
-La estructura de seis gerencias mencionada en el sílabo se conserva como contexto, pero no implica que todas ejecuten tareas: el BPMN tiene seis carriles y asigna trabajo a cuatro áreas funcionales, además de representar Cliente y Gerencia General/PO como participantes de solicitud/revisión.
+## 2. Scrum en breve
 
-## 1. Scrum en una frase
+Scrum organiza el desarrollo en ciclos cortos. En cada ciclo, el equipo define un resultado, realiza el trabajo, revisa un incremento y adapta el plan. Se apoya en tres ideas:
 
-Scrum es un marco de trabajo para construir un producto **por incrementos pequeños**, recibir retroalimentación y adaptar las prioridades. En vez de planificar cada detalle y esperar hasta el final, el equipo acuerda un objetivo para esta semana, crea una parte utilizable, la muestra y aprende qué hacer después.
+- **Transparencia:** el estado, las decisiones y los problemas son visibles.
+- **Inspección:** se revisan el producto, los criterios y la forma de trabajar.
+- **Adaptación:** el plan se ajusta cuando el PO aclara el producto o el equipo aprende algo nuevo.
 
-El ciclo básico es:
+Jira y Discord apoyan estas prácticas; usar herramientas no sustituye acordar objetivos, revisar resultados ni registrar decisiones.
 
-```
-Backlog priorizado → plan semanal → construir y probar → mostrar incremento
-        ↑                                                    ↓
-        └──────────── retroalimentación y nuevo orden ────────┘
-```
-
-Los principios que lo sostienen son **transparencia** (trabajo visible), **inspección** (revisar producto/avance) y **adaptación** (cambiar plan o prioridad cuando se aprende algo). Jira y Discord ayudan, pero tener esas herramientas no significa por sí solo que se esté trabajando con Scrum.
-
-## 2. Quién hace qué
-
-Scrum define tres responsabilidades. Para su equipo, la asignación inicial es:
+## 3. Responsabilidades
 
 ### Product Owner — profesor
 
-El PO es responsable de maximizar el valor del producto y ordenar las prioridades. En vuestro caso el profesor confirmó que asumirá este rol. Puede aclarar qué requisitos son más importantes, validar reglas de negocio y dar retroalimentación al revisar el incremento.
+- Ordena el Product Backlog de acuerdo con el valor y las necesidades del producto.
+- Aclara campos, reglas y criterios de negocio pendientes.
+- Revisa los incrementos y aporta retroalimentación.
+- Decide si la automatización entra al trabajo priorizado y, si se prueba, si se aprueba, se ajusta o se rechaza.
 
-El PO **no tiene que asignar cada subtarea técnica** ni asistir a todas las reuniones diarias. El equipo lleva sus preguntas y decisiones de alcance al PO, y el PO mantiene el Product Backlog ordenado. Para automatización, el PO decide si se prioriza y si los resultados reportados por TI justifican aprobarla, pedir ajustes o rechazarla; no se presume aprobación por haber terminado una prueba.
+El equipo prepara preguntas concretas, evidencia y opciones; no traslada al PO decisiones técnicas cotidianas ni presenta supuestos como acuerdos.
 
 ### Developers — cuatro integrantes
 
-Los cuatro Developers son responsables, en conjunto, de construir un Incremento de calidad. Dentro del equipo pueden organizarse temporalmente por interfaz, datos, lógica, pruebas o documentación, pero el resultado pertenece al equipo completo.
+Los cuatro responden por el incremento completo: interfaz, lógica, datos, pruebas, integración y documentación según el trabajo seleccionado. Pueden dividir tareas para avanzar, pero el conocimiento no debe quedar encerrado en una sola persona.
 
-**Organización práctica para cuatro Developers:** pueden trabajar en dos parejas para avanzar en paralelo, pero roten las parejas y revisen entre áreas. Por ejemplo, no dejen siempre a las mismas dos personas como únicas responsables de interfaz y a las otras dos como únicas responsables de datos. Reserven revisión cruzada e integración para que los cuatro comprendan el recorrido completo (TRABAJO EN EQUIPO QUE PIDE EL PO).
+Prácticas recomendadas para este equipo:
 
-### Scrum Master — un estudiante facilitador
+- Trabajar en parejas o pequeños grupos por tarea y rotar las áreas entre Sprints.
+- Pedir revisión a otro integrante; el autor no es la única persona que prueba su cambio.
+- Hacer sesiones breves de transferencia cuando una persona termine una parte que otra necesita.
+- Asegurar que, como mínimo, dos Developers sepan ejecutar cada parte importante.
+- Cambiar quién presenta módulos en la Review para que los cuatro practiquen la explicación.
 
-Uno de los cuatro puede facilitar las reuniones, ayudar a retirar bloqueos y recordar el objetivo del Sprint. El Scrum Master **no es jefe**, no reparte calificaciones y no es la única persona que administra el proyecto. En un equipo pequeño puede también programar o diseñar. No es obligatorio cambiar de Scrum Master cada semana; pero sí conviene rotar quién presenta y explica los módulos para que todos aprendan.
+La facilitación de reuniones puede acordarse entre los cuatro Developers. Facilitar no convierte a una persona en jefa ni elimina la responsabilidad compartida.
 
-## 3. Las tres piezas principales del trabajo
+## 4. Artefactos del trabajo
 
-### Product Backlog — lista priorizada del producto
+### Product Backlog
 
-Es la lista completa, cambiante y ordenada de necesidades, mejoras, errores y trabajo técnico. El PO decide el orden final, y el equipo puede proponer elementos y ayudar a aclararlos.
+Lista priorizada del producto. La versión consolidada está en `backlog/Product_Backlog_Atlantic_City.md`; el PO mantiene la prioridad final. Las historias tienen criterios observables y decisiones pendientes identificables.
 
-Ejemplos para Atlantic City:
+### Sprint Backlog
 
-- buscar o registrar un cliente;
-- validar los datos y reducir perfiles duplicados;
-- registrar visitas e interacciones;
-- consultar el historial;
-- segmentar clientes y evaluar si aplica una promoción;
-- gestionar incidencias o reportes, si el PO los prioriza.
+Plan de la semana: objetivo del Sprint, historias seleccionadas y tareas que los Developers acuerdan realizar. Se actualiza durante la semana cuando cambia el plan de trabajo, conservando el objetivo del Sprint.
 
-No es una lista que se debe completar entera antes de la entrega. Es la fuente desde la que se selecciona el trabajo siguiente.
+### Incremento
 
-### Sprint Backlog — el plan de esta semana
+Resultado integrado que se puede ejecutar o revisar y que satisface la Definition of Done del equipo. Una pantalla desconectada, una tarea empezada o código sin probar no son automáticamente un incremento terminado.
 
-Al planificar el Sprint, los Developers eligen del Product Backlog una cantidad de trabajo realista y acuerdan cómo abordarla. El Sprint Backlog incluye el **Sprint Goal**, los elementos seleccionados y el plan de trabajo. Se puede ajustar durante la semana al aprender más, sin perder de vista el objetivo.
+## 5. Ciclo de Sprint semanal
 
-### Incremento — lo que ya está usable
+### Antes del Sprint Planning — refinamiento
 
-Es una parte del producto integrada y que cumple el estándar de calidad del equipo (Lo funcional que se tenga hasta el momento). Ejemplo: una vista que permite buscar un cliente ficticio, muestra el perfil correcto y comunica claramente cuando no encuentra resultados.
+El PO y el equipo aclaran las historias que podrían entrar pronto: propósito, criterios, dependencias, datos necesarios y preguntas abiertas. El equipo no necesita detallar desde el primer día todas las historias del producto.
 
-Una diapositiva, una tarea iniciada o código que nadie puede ejecutar (aún no terminados) no son necesariamente un Incremento terminado.
+### Sprint Planning — inicio de semana
 
-Cada Sprint debe lograr minimo un incremento.
+1. Revisar el orden actual del backlog y cambios del PO.
+2. Acordar un **Sprint Goal** expresado como resultado, no solo una lista de tareas.
+3. Seleccionar historias que los cuatro Developers puedan terminar con calidad.
+4. Desglosar las historias seleccionadas en tareas de interfaz, datos/lógica, pruebas, integración y documentación cuando corresponda.
+5. Identificar responsables de avanzar y revisores distintos.
+6. Registrar tareas, preguntas y riesgos en Jira.
 
-## 4. El objetivo detrás de cada artefacto
+### Trabajo diario
 
+- Cada Developer actualiza la tarjeta en Jira cuando cambia el estado.
+- El equipo integra y prueba en incrementos pequeños; no espera hasta el último día para reunir módulos.
+- En un check-in breve se comparte avance, siguiente paso y bloqueo. El Daily Scrum, cuando se realice, se centra en adaptar el plan hacia el Sprint Goal.
+- Discord se utiliza para coordinar y pedir ayuda; los acuerdos importantes se resumen en Jira o en la documentación.
 
+### Sprint Review — cierre y retroalimentación
 
-| Artefacto | Compromiso que lo acompaña | Pregunta que responde |
+El equipo muestra una parte ejecutable al profesor/PO y explica qué criterios cumple, qué pruebas se hicieron y qué queda fuera. Se toman notas de la retroalimentación y el PO puede reordenar el backlog.
 
+Si la historia HU-13 está priorizada, se presenta el resultado de las pruebas y el PO decide explícitamente si aprueba, pide ajustes o rechaza la propuesta. Una prueba técnica exitosa por sí sola no autoriza activar una automatización.
+
+### Retrospectiva — mejora del equipo
+
+Después de revisar el producto, los cuatro Developers conversan sobre qué ayudó, qué dificultó el trabajo y qué acción concreta probarán en el siguiente Sprint. Se registran una o dos acciones, sin buscar culpables.
+
+## 6. Plan de Sprints vigente
+
+| Sprint | Objetivo de trabajo | Historias según el plan recibido |
 |---|---|---|
+| **1 — Perfiles** | Buscar, crear, actualizar y consultar un perfil con su historial disponible. | HU-01, HU-02, HU-03, HU-04 |
+| **2 — Atención y criterios** | Registrar visita/interacción y consultar los cuatro criterios. | HU-05, HU-07 |
+| **3 — Segmento y oferta** | Consultar el segmento, evaluar la promoción y dejar registro de oferta según criterios aprobados. | HU-08, HU-09, HU-11 |
+| **4 — Complementos** | Abordar funciones complementarias que el PO mantenga prioritarias. | HU-06, HU-10, HU-12 y HU-13* |
 
-| Product Backlog | **Product Goal** | ¿Qué queremos lograr con el producto piloto en general? |
+\* HU-13 es baja/condicionada y solo se selecciona con priorización y definición del PO. El plan propuesto no significa que todas las historias estén aprobadas para implementación. Si una historia no cumple sus criterios, no se marca como terminada; el PO y el equipo acuerdan su nueva prioridad.
 
-| Sprint Backlog | **Sprint Goal** | ¿Qué resultado importante vamos a conseguir esta semana? |
+## 7. Cómo evitar pérdida de información
 
-| Incremento | **Definition of Done** | ¿Qué calidad debe tener el trabajo para considerarse terminado? |
+### Fuente de verdad
 
-|---|---|---|
+- **Jira:** estado de historias/tareas, prioridad, responsable, revisor, bloqueo, evidencia y decisiones de Sprint.
+- **Carpeta del proyecto:** guías vigentes, backlog, modelo, wireframes, MVP y material de aprendizaje.
+- **Discord:** coordinación cotidiana; no es el único registro de decisiones.
 
+### Registro de decisiones
 
+Para cada pregunta al PO, anotar: historia o proceso relacionado, pregunta, fecha de consulta, respuesta acordada y qué archivos/pruebas deben cambiar. Si aún no hay respuesta, conservar el estado «pendiente».
 
-### Product Goal sugerido
+### Handoff entre Developers
 
-> Entregar un piloto usable que centralice un perfil y su historial básico y demuestre cómo apoyar una atención consistente y una promoción basada en reglas acordadas.
+Al entregar una tarea, quien la desarrolló deja una nota breve en la tarjeta: archivos modificados, cómo ejecutar, qué probar, resultado y limitaciones conocidas. El siguiente Developer reproduce el resultado antes de continuar. Una revisión cruzada debe ser entendible por alguien que no escribió el código.
 
-El profesor confirma o modifica este objetivo.
+### Evitar trabajo duplicado o incompatible
 
-### Sprint Goal de ejemplo
+Antes de empezar, revisar Jira y el tablero; acordar qué archivos toca cada persona; integrar cambios pequeños; actualizar el estado al detenerse. Si dos tareas editan el mismo archivo, coordinarse antes de combinar cambios.
 
-> Al final de esta semana, el equipo podrá registrar un cliente de prueba y volver a consultar su perfil.
+## 8. Definition of Done del equipo
 
-Un Sprint Goal es un resultado compartido; no es simplemente una lista de títulos de Jira.
+Una historia se puede considerar terminada cuando:
 
-### Definition of Done (DoD)
+- cumple todos sus criterios de validación;
+- funciona con los datos y escenarios acordados;
+- incluye manejo comprensible de entradas faltantes o inválidas cuando aplica;
+- fue revisada por otro integrante;
+- se probaron los casos previstos y se registró el resultado;
+- está integrada con el incremento y no rompe otras funciones;
+- la documentación afectada está actualizada;
+- el equipo puede demostrarla y explicar sus límites.
 
-Acuerdo común de calidad. Una historia podría estar “Hecha” cuando cumple sus criterios de aceptación, está revisada por otro integrante, probada, integrada, documentada y se puede demostrar. El equipo define el DoD al comenzar y lo mejora si es necesario.
+La Definition of Done es un acuerdo común que se puede ajustar con el PO o la rúbrica. Si un criterio no se cumple, la historia queda en progreso o vuelve al backlog; no se oculta el pendiente.
 
-## 5. Cómo escribir y descomponer el trabajo
+## 9. Pruebas y demostración
 
-### Product Backlog Item (PBI)
+Para cada historia, registrar al menos:
 
-Es cualquier elemento del Product Backlog: historia de usuario, requisito técnico, bug, prueba o documentación. No todos los PBI tienen que ser historias de usuario.
+| Campo | Qué anotar |
+|---|---|
+| Caso | Qué condición se está probando. |
+| Datos de entrada | Identificador y valores ficticios utilizados. |
+| Esperado | Resultado derivado de los criterios confirmados. |
+| Obtenido | Resultado observado. |
+| Estado | Correcto, defectuoso o pendiente. |
+| Evidencia | Captura, registro o salida de prueba. |
+| Responsable/revisor | Quién ejecutó y quién verificó. |
 
-### Historia de usuario
+En la demo, indicar qué partes usan datos de demostración, qué funciones se guardan solo localmente y qué conexiones no están implementadas. Una constancia de pantalla no se describe como mensaje realmente enviado.
 
-Formato opcional para explicar una necesidad desde quien la usa:
+## 10. Preguntas frecuentes del equipo
 
-> Como **[usuario]**, quiero **[objetivo]**, para **[beneficio]**.
+**¿Puede un Developer tomar una decisión de negocio para avanzar?**  
+Puede proponer una opción técnica, pero las reglas de producto, campos autorizados y prioridades se confirman con el PO. Mientras tanto se registra el pendiente.
 
-**Ejemplo:** Como agente de Servicio al Cliente, quiero buscar el perfil de un cliente para atenderlo con información consistente.
+**¿Una historia asignada a un Sprint ya está comprometida como terminada?**  
+El equipo planifica completarla, pero debe revisar capacidad, dependencias y criterios. Si hay un bloqueo, lo comunica y renegocia el plan; no la marca como terminada sin cumplir la Definition of Done.
 
-### Criterios de aceptación
+**¿Cómo se explica una diferencia entre wireframe y MVP?**  
+Los wireframes de Inicio/Dashboard representan una propuesta visual más amplia para una etapa posterior. El MVP actual es una pantalla sencilla para probar un recorrido acotado; la guía de prototipado explica la diferencia.
 
-Son comprobaciones observables para saber si esa historia funciona como se esperaba. Para la búsqueda anterior:
+**¿Python y SQL ya están seleccionados?**  
+No por el solo hecho de tener carpetas preparadas. Los materiales de clase presentan tecnologías posibles; el framework y el motor deben confirmarse antes de escribir código de servidor o scripts específicos.
 
-- si el cliente existe, se muestra el perfil correcto;
-- si no existe, se explica que no se encontró y se puede iniciar el alta;
-- una búsqueda inválida muestra un mensaje comprensible;
-- se usa información ficticia para las pruebas.
+## 11. Guion de explicación compartido
 
-### Subtareas
+Cada integrante debe poder explicar, con sus palabras:
 
-Son pasos técnicos para completar un PBI, por ejemplo: construir el formulario, programar la búsqueda, conectar datos, probar y documentar. Terminar una subtarea no necesariamente significa que la historia ya esté terminada.
+1. qué problema busca atender el proyecto;
+2. quién usa el proceso y qué responsabilidades muestra cada carril;
+3. por qué la visita/interacción se conserva aunque no exista incidencia ni promoción;
+4. cuáles son los cuatro criterios y qué falta acordar para clasificarlos;
+5. cómo se distingue una campaña de una promoción;
+6. qué hace el MVP, qué datos guarda y qué no está integrado;
+7. qué prueba evidencia el resultado de la historia que presenta;
+8. qué decisiones siguen pendientes del PO.
 
-### Refinamiento
-
-Actividad continua para aclarar los elementos que pronto podrían planificarse: objetivo, criterios, dependencias, dudas y tamaño. No es obligatorio preparar o estimar todo el producto desde el inicio.
-
-## 6. Un Sprint de una semana, paso a paso
-
-Los tiempos de reunión de abajo son sugerencias para el curso, no tiempos obligatorios del marco Scrum. Ajusten al horario real.
-
-### 1) Refinar el Product Backlog
-
-El PO y el equipo revisan elementos próximos. Ejemplo: antes de hacer un formulario de cliente, acordar campos obligatorios e identificador de búsqueda. Las decisiones de negocio se preguntan al PO; las decisiones técnicas se discuten en el equipo.
-
-### 2) Sprint Planning — planificar
-
-Al inicio de la semana, sugerencia de 45–90 minutos:
-
-1. Revisar prioridades con el PO.
-2. Decidir por qué el Sprint importa y escribir el Sprint Goal.
-3. Seleccionar lo que el equipo puede completar con su disponibilidad real.
-4. Aclarar criterios de aceptación y descomponer subtareas.
-5. Acordar qué se probará y quién revisará.
-
-No se deben seleccionar todas las tareas pendientes ni comprometer más de lo que cuatro Developers pueden terminar con calidad.
-
-### 3) Trabajo y Daily Scrum
-
-Durante los días de trabajo, actualicen Jira, desarrollen, integren cambios y prueben de manera gradual. El **Daily Scrum** dura como máximo 15 minutos y los Developers inspeccionan el avance hacia el Sprint Goal y adaptan su plan.
-
-Pueden comentar: avance, siguiente paso y bloqueo. Las tres preguntas son una forma de hacerlo, no un requisito. Si no pueden reunirse por voz, acuerden un check-in escrito corto como adaptación del equipo. Discord ayuda a coordinar; los cambios de alcance importantes se registran en Jira.
-
-### 4) Sprint Review — mostrar y aprender
-
-Al final de la semana, sugerencia de 30–60 minutos. Demuestren una parte **ejecutable** al profesor/PO y al equipo. Escuchen comentarios y actualicen prioridades. La Review no debería ser solo una presentación de diapositivas ni una aceptación automática de cada tarjeta. Si el Sprint incluye automatización, TI presenta el reporte y los resultados de sus pruebas; el PO valida ahí la decisión de aprobar, solicitar ajustes y una nueva prueba, o rechazar definitivamente. Hasta que exista aprobación explícita, la automatización no se activa ni se declara aceptada.
-
-### 5) Sprint Retrospective — mejorar como equipo
-
-Después de la Review, sugerencia de 30–45 minutos. Conversen:
-
-- ¿Qué ayudó a avanzar?
-- ¿Qué nos hizo perder tiempo o bloqueó el trabajo?
-- ¿Qué acción pequeña probará el equipo la próxima semana?
-
-Registrar una o dos acciones concretas en Jira. La conversación busca mejorar el sistema de trabajo, no culpar a una persona.
-
-### 6) Cerrar el Sprint y empezar el siguiente
-
-Lo que no cumple los criterios **no se marca como Hecho**. Vuelve al Product Backlog y el PO decide su prioridad futura. En el próximo Planning el equipo vuelve a elegir el trabajo posible.
-
-## 7. Ejemplo completo: segmentación y decisión del PO sobre automatización
-
-### Historia de segmentación: AC-PBI-24 y AC-PBI-12
-
-1. **Product Backlog:** el PO confirma la prioridad y las reglas de AC-PBI-11; AC-PBI-24 consulta frecuencia de visitas, nivel de gasto, preferencias de juegos e historial de promociones; AC-PBI-12 asigna/consulta el segmento con esos criterios.
-
-2. **Refinamiento:** el equipo identifica qué datos ficticios estarán disponibles. Si faltan reglas o datos, lo registra como pregunta; no crea umbrales o pesos propios.
-
-3. **Sprint Planning:** si el objetivo semanal lo permite, se selecciona la consulta y la clasificación como parte de «Segmentación de clientes».
-
-4. **Desarrollo en Jira:** se detallan las cinco tareas secuenciales del subproceso: consultar cada uno de los cuatro criterios y, luego, segmentar al cliente.
-
-5. **Pruebas:** se revisan datos completos y faltantes. El resultado se compara con el criterio aprobado por el PO; cuando no haya una regla aprobada, se informa que no se puede asignar segmento.
-
-6. **Done:** se completa cuando los criterios observables, la revisión cruzada, la documentación y la evidencia cumplen la Definition of Done.
-
-7. **Review:** el equipo demuestra la vista principal con el subproceso colapsado y el detalle de la secuencia de cinco tareas. El PO comenta y actualiza prioridades si corresponde.
-
-### Historia condicionada de automatización: AC-PBI-19
-
-1. **Priorización:** el profesor decide si la automatización entra al Product Backlog seleccionado y concreta tarea, entradas, reglas, excepciones y resultado esperado.
-
-2. **Construcción y prueba:** TI configura la alternativa aprobada y prueba resultados normales y de error; la simulación se identifica como tal.
-
-3. **Reporte:** TI presenta al PO el informe de resultados y evidencias.
-
-4. **Sprint Review:** el PO valida el resultado y decide: aprobar; pedir ajustes para volver a definir y probar; o rechazar definitivamente.
-
-5. **Después de la Review:** solo con aprobación explícita se continúa a «Activar y monitorear». Con ajustes se devuelve al ciclo de definición/prueba; con rechazo definitivo no se activa y se registra el cierre/repriorización en Jira.
-
-La prueba técnica y la aprobación del PO son decisiones distintas. Si el PO no prioriza la automatización, el equipo no debe inventar una selección ni presentar su implementación como comprometida.
-
-## 8. Cómo organizar Jira y Discord
-
-### Jira: fuente de verdad para el trabajo
-
-Un tablero sencillo puede tener `Backlog → Seleccionado → En curso → Revisión → Pruebas → Hecho`. En cada tarjeta registren título, objetivo, criterios de aceptación, prioridad, dependencia, responsable y revisor. Si usan estimaciones, acuerden una técnica; Story Points, Fibonacci o Planning Poker son opcionales y no miden productividad individual.
-
-El archivo `Product_Backlog_Guia_Atlantic_City` es un borrador para iniciar esta lista. El profesor debe confirmarlo y ordenarlo.
-
-### Discord: espacio de comunicación
-
-Si una decisión se tomó por Discord, anótenla también en Jira o documentación. Así quien no estuvo en la conversación puede encontrarla.
-
-## 9. Plan tentativo de cuatro o cinco Sprints semanales
-
-Las metas actuales se conservan; los PBIs son una propuesta de planificación y se seleccionan según la prioridad del PO y la capacidad real de los cuatro Developers. Las funciones complementarias se toman solo si el profesor las ordena para el piloto.
-
-
-
-| Sprint | Sprint Goal actual | Plan y lista priorizada propuesta |
-
-|---|---|---|
-
-| **1. Entender y diseñar** | Entender el problema y acordar el diseño del piloto. | AC-PBI-01–04: alcance, BPMN principal con inicios de distinto tipo, subproceso de segmentación colapsado y diagrama de detalle, pantallas iniciales y modelo lógico. |
-
-| **2. Perfil de cliente** | Poder buscar, registrar y consultar un perfil ficticio. | AC-PBI-05–08: navegación, búsqueda, alta/validación y ficha/historial inicial; pruebas y documentación desde el Sprint. |
-
-| **3. Visitas e historial** | Registrar visita/historial y demostrar la decisión de promoción sí/no. | AC-PBI-09–14 y AC-PBI-24 según capacidad: visita/interacción, preferencias, consulta de los cuatro criterios, asignación de segmento, elegibilidad y promoción; pruebas de cada ruta. |
-
-| **4. Complemento prioritario** | Entregar la función complementaria de mayor prioridad e integrar. | El PO escoge entre AC-PBI-15/16 (incidencias), AC-PBI-17 (campañas), AC-PBI-18 (reportes) o AC-PBI-19 (automatización). Para AC-PBI-19, reservar Review para informe y decisión PO; mantener trabajo de pruebas/documentación. |
-
-| **5. Validar y presentar (si se dispone)** | Validar, corregir, documentar y presentar una versión candidata. | AC-PBI-20–23 y pendientes priorizados: correcciones, recorrido integrado, evidencia, demo y cierre. Si solo hay cuatro semanas, integrar validación en Sprint 4 y reducir funciones complementarias según acuerdo PO, no quitar pruebas silenciosamente. |
-
-|---|---|---|
-
-
-
-Con cuatro Sprints, planifiquen para que el Sprint 4 incluya el trabajo de validación y demo. Un quinto Sprint es contingencia permitida por el calendario, no un requisito. Los Developers seleccionan trabajo realista; no se comprometen con los PBIs por el mero hecho de que aparezcan en el backlog.
-
-## 10. Glosario rápido
-
-- **PO / Product Owner:** ordena prioridades y aclara valor/necesidades; en este equipo, el profesor.
-
-- **SM / Scrum Master:** facilita Scrum y ayuda con bloqueos; no es jefe.
-
-- **Developers:** los cuatro integrantes que producen el incremento.
-
-- **Product Backlog:** lista priorizada del producto completo.
-
-- **Sprint Backlog:** objetivo, trabajo seleccionado y plan de la semana.
-
-- **Sprint Goal:** resultado común que guía el Sprint.
-
-- **Incremento:** parte usable y comprobada del producto.
-
-- **Criterios de aceptación:** condiciones que debe cumplir una historia.
-
-- **Definition of Done:** estándar de calidad compartido para marcar trabajo Hecho.
-
-- **Impedimento:** bloqueo que frena al equipo y debe hacerse visible.
-
-- **Stakeholder/interesado:** persona o área que puede aportar necesidades o comentarios; no necesariamente es PO.
-
-## 11. Regla para que los cuatro conozcan el proyecto
-
-Repartir tareas está bien; formar silos, no. Cada historia importante debe tener un revisor distinto, al menos dos personas deben saber ejecutar cada módulo, y cada semana debe cambiar quién explica una parte en la demo. Todos deberían poder describir el problema, el recorrido principal, cómo se conectan interfaz/lógica/datos, qué se probó y qué limitaciones quedan.
+El objetivo es que el equipo presente una explicación coherente, no que cada persona conozca solo su tarea asignada.
