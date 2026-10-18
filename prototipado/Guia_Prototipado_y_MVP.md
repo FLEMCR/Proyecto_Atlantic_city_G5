@@ -1,13 +1,22 @@
-# Guía de prototipado — wireframes y MVP Atlantic City
+# Guía de prototipado — wireframes, MVP y prototipo con navegación
 
-## 1. Relación entre los wireframes y el MVP
+## 1. Qué contiene esta carpeta y en qué orden se presenta
 
-En esta carpeta se conservan dos piezas con propósitos distintos:
+La estructura de entrega propuesta por el profesor pide tres productos distintos en este bloque. Aquí se conservan los tres, separados para no mezclarlos:
 
-1. **Wireframes manual y digital:** representan la misma pantalla Inicio/Dashboard, en dos estilos. Es una propuesta visual más amplia para una etapa de desarrollo posterior.
-2. **MVP sencillo:** es la página funcional de la carpeta `MVP/`. Demuestra un único recorrido de atención, con formulario, resumen tipo comprobante, conteos locales e historial.
+| Punto de la estructura | Producto | Ubicación | Qué demuestra |
+|---|---|---|---|
+| 8 | Wireframes digitales | `wireframe_manual.png` y `wireframe_digital.png` | El diseño de la pantalla, sin funcionamiento |
+| 9 | Producto Mínimo Viable (MVP) | `MVP/` | Las funcionalidades mínimas que sí se implementan |
+| 10 | Prototipo con navegación | `prototipo_navegable/` | Las mismas pantallas conectadas entre sí |
 
-Los wireframes no son pantallas navegables y no significan que todas las funciones del Dashboard estén ya implementadas. El MVP sencillo tampoco es el sistema completo. Esta separación evita confundir diseño visual futuro con funcionalidad disponible.
+El orden del informe es wireframes → MVP → prototipo con navegación, tal como aparece en la estructura propuesta. En el ejemplo resuelto del profesor el prototipo aparece antes que el MVP; ese orden pertenece a ese documento y no se copia aquí.
+
+Tres ideas que conviene tener claras antes de explicar cualquiera de las piezas:
+
+1. **El wireframe no funciona.** No tiene botones funcionales, validaciones, navegación ni programación: solo diseño.
+2. **El MVP es pequeño a propósito.** Resuelve el recorrido mínimo para no intentar programar todo Atlantic City.
+3. **El prototipo con navegación conecta pantallas.** Su objetivo es demostrar que se entiende el paso de una interfaz a otra.
 
 ## 2. Wireframe manual: `wireframe_manual.png`
 
@@ -21,7 +30,7 @@ Es el boceto manual de la pantalla de Inicio/Dashboard. Organiza visualmente nav
 - La actividad resume visitas e incidencias.
 - La zona de criterios recuerda los cuatro insumos del proyecto.
 - La tabla de perfiles y la sección de campañas/promociones muestran agrupaciones de información.
-- La nota de elegibilidad es un resumen del flujo: «No aplica» no genera comunicación; «Aplica» se representaría mediante una constancia local en el MVP actual.
+- La nota de elegibilidad es un resumen del flujo: «No aplica» no genera comunicación; «Aplica» se representaría mediante una constancia local.
 
 ## 3. Wireframe digital: `wireframe_digital.png`
 
@@ -29,9 +38,15 @@ Es la versión digital de la misma pantalla y contiene las mismas áreas que el 
 
 ### Por qué se entregan ambas versiones
 
-El boceto manual facilita conversar sobre estructura; el digital ayuda a revisar la distribución con más precisión. Compararlas permite validar la organización antes de construir una interfaz extensa. En ambos casos, etiquetas y texto acompañan al color para que el significado no dependa solo de la paleta.
+El boceto manual facilita conversar sobre estructura; el digital ayuda a revisar la distribución con más precisión. Compararlas permite validar la organización antes de construir la interfaz. En ambos casos, etiquetas y texto acompañan al color para que el significado no dependa solo de la paleta.
+
+### Cómo explicar un wireframe en la presentación
+
+Sigue el recorrido visual de la pantalla, de arriba hacia abajo y de izquierda a derecha: cabecera e identidad, menú de navegación, indicadores, zonas de contenido (actividad, criterios, perfiles, marketing) y notas. Termina diciendo qué no es: no es una pantalla funcional ni una promesa de alcance.
 
 ## 4. MVP sencillo: estructura de la pantalla
+
+Ubicación: `MVP/` (`index.html`, `styles.css`, `app.js`).
 
 El MVP toma del ejemplo de pedido una organización compacta: pasos numerados, formulario principal, vista-resumen inmediata, conteos e historial. Se adaptan únicamente patrones de interfaz; no se usan los productos, métricas ni reglas del ejemplo.
 
@@ -72,9 +87,49 @@ Al pie de la pantalla se muestran perfiles, visitas/interacciones, incidencias y
 - **Campaña:** selección opcional independiente; el MVP no gestiona su aprobación o publicación.
 - **Automatización:** no implementada.
 
-## 6. Datos de demostración y persistencia
+## 6. Prototipo con navegación
 
-Al iniciar por primera vez se muestran dos perfiles de prueba, una visita, una interacción, una campaña y una promoción de prueba. No hay incidencias ni constancias precargadas. El distintivo «Datos de demostración» identifica el carácter ficticio de la información.
+Ubicación: `prototipo_navegable/` (`index.html`, `styles.css`, `app.js` y una versión en archivo único).
+
+Convierte el wireframe en una interfaz navegable con siete vistas: Inicio, Clientes, Visitas e interacciones, Incidencias, Segmentación, Promociones y campañas, y Reportes. El menú lateral cambia de vista sin recargar la página y los accesos directos del Inicio llevan a la sección correspondiente.
+
+### Recorrido que se demuestra
+
+```text
+Inicio
+  ↓
+Clientes → Registrar cliente → Guardar → Lista de clientes → Ver ficha
+  ↓
+Visitas e interacciones → Registrar actividad → Historial del cliente
+  ↓
+Incidencias → Registrar incidencia → Seguimiento
+  ↓
+Segmentación → Consultar los cuatro criterios → Clasificación manual
+  ↓
+Promociones y campañas → Campaña / Promoción / Revisión de elegibilidad
+  ↓
+Reportes → Resumen local y exportación CSV
+```
+
+### Qué hace cada vista
+
+| Vista | Qué muestra | Qué permite hacer |
+|---|---|---|
+| Inicio | Resumen general, clientes recientes, criterios, actividad y marketing | Ir a cualquier sección con los accesos directos |
+| Clientes | Base de perfiles de demostración | Registrar, buscar, actualizar y abrir la ficha |
+| Visitas e interacciones | Formulario y actividad registrada | Registrar una visita o interacción y buscar en el historial |
+| Incidencias | Casos y notas de seguimiento | Registrar una incidencia y añadir seguimiento |
+| Segmentación | Los cuatro criterios por perfil | Consultar los insumos y escribir una clasificación manual |
+| Promociones y campañas | Campañas, promociones y revisiones | Registrar campaña, promoción y resultado manual de elegibilidad |
+| Reportes | Resumen de los registros locales | Revisar conteos y exportar un CSV local |
+
+### Diferencia con el MVP
+
+El MVP es una sola pantalla con el recorrido mínimo; el prototipo con navegación muestra cómo se conectan las pantallas entre sí. Ambos usan datos de demostración guardados en el navegador y ninguno sustituye al otro en la entrega.
+
+## 7. Datos de demostración y persistencia
+
+Al iniciar por primera vez, cada versión muestra registros de prueba (perfiles, visitas, una campaña y una promoción). El distintivo «Datos de demostración» identifica el carácter ficticio de la información.
 
 Los cambios se guardan en `localStorage` del navegador. Por eso:
 
@@ -83,15 +138,23 @@ Los cambios se guardan en `localStorage` del navegador. Por eso:
 - pueden perderse al limpiar los datos del sitio;
 - no son una base de datos central ni una integración con Atlantic City.
 
-## 7. Cómo ejecutar y probarlo
+El MVP usa la clave `atlanticCitySimpleMvp_v1` y el prototipo con navegación la clave `atlanticCityMvp_v3`; al ser claves distintas, los registros de una versión no se mezclan con los de la otra aunque se abran en el mismo navegador y origen.
 
-Desde `prototipado/MVP/`, inicia un servidor estático:
+## 8. Cómo ejecutar y probar
+
+Cada carpeta se sirve por separado para que las dos versiones no se confundan.
 
 ```bash
-python -m http.server 4173
+# MVP (punto 9 de la estructura)
+cd prototipado/MVP && python -m http.server 4173
+
+# Prototipo con navegación (punto 10 de la estructura)
+cd prototipado/prototipo_navegable && python -m http.server 4174
 ```
 
-Abre `http://localhost:4173` en el navegador. Para una prueba básica:
+El archivo único del prototipo también puede abrirse con doble clic, sin servidor.
+
+### Prueba básica del MVP
 
 1. Escribe `AC-001` y sal del campo para cargar un perfil de demostración, o ingresa un identificador y nombre nuevos.
 2. Registra una visita; revisa el resumen y el historial.
@@ -101,16 +164,30 @@ Abre `http://localhost:4173` en el navegador. Para una prueba básica:
 6. Repite con «Aplica» y confirma que el historial registra una constancia local, sin indicar que se envió un mensaje.
 7. Revisa que los conteos y el historial distingan los registros locales.
 
-## 8. Decisiones pendientes y funciones posteriores
+### Prueba básica del prototipo con navegación
 
-El MVP no resuelve por sí solo todos los criterios del Product Backlog. Antes de ampliar el producto, el PO debe confirmar identificador y campos, fuentes de datos, periodo de frecuencia, regla de segmentación y elegibilidad, campos/estados de incidencias, condiciones y aprobación de campañas, indicadores y periodos de reportes, así como tecnologías de backend y base de datos.
+1. Recorre las siete vistas desde el menú lateral y confirma que el cambio no recarga la página.
+2. Registra un cliente nuevo y búscalo en la lista y en su ficha.
+3. Registra una visita asociada a ese cliente y verifícala en el historial.
+4. Registra una incidencia y añade una nota de seguimiento.
+5. Consulta los cuatro criterios en Segmentación y guarda una clasificación manual.
+6. Registra una promoción, evalúa «No aplica» y luego «Aplica»; comprueba que solo el segundo caso crea constancia local.
+7. Abre Reportes y exporta el CSV local; verifica que los conteos coincidan con lo registrado.
 
-Las vistas completas de perfiles, gestión de campañas, reportes e incidencias pueden planificarse mediante el Product Backlog. Los wireframes del Dashboard sirven como referencia de estructura para esa evolución; su presencia no autoriza a dar por implementadas esas funciones.
+## 9. Decisiones pendientes y funciones posteriores
 
-## 9. Archivos de la carpeta
+Ninguna de las dos versiones resuelve por sí sola todos los criterios del Product Backlog. Antes de ampliar el producto, el PO debe confirmar identificador y campos, fuentes de datos, periodo de frecuencia, regla de segmentación y elegibilidad, campos y estados de incidencias, condiciones y aprobación de campañas, e indicadores y periodos de reportes.
+
+Los wireframes del Dashboard sirven como referencia de estructura para esa evolución; su presencia no autoriza a dar por implementadas esas funciones.
+
+## 10. Archivos de la carpeta
 
 - `wireframe_manual.png` — pantalla Inicio/Dashboard, boceto manual.
 - `wireframe_digital.png` — la misma pantalla, diseño digital.
-- `MVP/index.html` — estructura y formulario.
-- `MVP/styles.css` — presentación adaptable.
-- `MVP/app.js` — comportamiento local, validaciones y actualización de la vista.
+- `MVP/index.html`, `MVP/styles.css`, `MVP/app.js` — MVP sencillo de una pantalla.
+- `MVP/Guia_Codigo_MVP.md` — guía detallada del código del MVP: funciones, reglas embebidas, validaciones y patrones reutilizables.
+- `MVP/README.md` — ejecución y límites del MVP.
+- `prototipo_navegable/index.html`, `styles.css`, `app.js` — prototipo de siete vistas conectadas.
+- `prototipo_navegable/Guia_Codigo_Prototipo_Navegable.md` — guía detallada del código del prototipo: navegación, renders, formularios, exportación CSV y patrones reutilizables.
+- `prototipo_navegable/Atlantic_City_Prototipo_Navegable_Archivo_unico.html` — el mismo prototipo en un solo archivo.
+- `prototipo_navegable/README.md` — ejecución, recorrido y límites del prototipo.

@@ -103,7 +103,7 @@ Después de revisar el producto, los cuatro Developers conversan sobre qué ayud
 ### Fuente de verdad
 
 - **Jira:** estado de historias/tareas, prioridad, responsable, revisor, bloqueo, evidencia y decisiones de Sprint.
-- **Carpeta del proyecto:** guías vigentes, backlog, modelo, wireframes, MVP y material de aprendizaje.
+- **Carpeta del proyecto:** informe de avance en la raíz, más `backlog/`, `docs/`, `modelado/`, `prototipado/` y `desarrollo/`. Cada entregable tiene una única versión vigente; si se corrige algo, se corrige ahí y no en copias sueltas.
 - **Discord:** coordinación cotidiana; no es el único registro de decisiones.
 
 ### Registro de decisiones
@@ -157,11 +157,11 @@ Puede proponer una opción técnica, pero las reglas de producto, campos autoriz
 **¿Una historia asignada a un Sprint ya está comprometida como terminada?**  
 El equipo planifica completarla, pero debe revisar capacidad, dependencias y criterios. Si hay un bloqueo, lo comunica y renegocia el plan; no la marca como terminada sin cumplir la Definition of Done.
 
-**¿Cómo se explica una diferencia entre wireframe y MVP?**  
-Los wireframes de Inicio/Dashboard representan una propuesta visual más amplia para una etapa posterior. El MVP actual es una pantalla sencilla para probar un recorrido acotado; la guía de prototipado explica la diferencia.
+**¿Cómo se explica la diferencia entre wireframe, MVP y prototipo con navegación?**  
+El wireframe es solo dibujo: no funciona. El MVP es una pantalla sencilla con el recorrido mínimo que sí se implementa. El prototipo con navegación conecta siete pantallas para demostrar el paso de una interfaz a otra. La guía de prototipado explica los tres y el orden en que se presentan.
 
-**¿Python y SQL ya están seleccionados?**  
-No por el solo hecho de tener carpetas preparadas. Los materiales de clase presentan tecnologías posibles; el framework y el motor deben confirmarse antes de escribir código de servidor o scripts específicos.
+**¿Qué tecnologías se están usando?**  
+HTML, CSS y JavaScript en el navegador, con datos de demostración guardados en el almacenamiento local. Ni el sílabo ni la estructura de entrega fijan un lenguaje de servidor o un motor de base de datos para esta etapa, así que no hay backend ni esquemas creados. Si el curso los pide más adelante, se acuerdan con el profesor antes de implementarlos.
 
 ## 11. Guion de explicación compartido
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#142b45">
-  <title>Atlantic City | Gestión de clientes</title>
+  <title>Atlantic City — Prototipo con navegación</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -99,7 +99,7 @@
         <div class="eyebrow">Seguimiento</div><div class="page-heading"><div><h1>Incidencias</h1><p>Registra una incidencia reportada y añade notas de seguimiento.</p></div></div>
         <div class="split-grid"><section class="panel"><div class="panel-heading"><div><h2>Nueva incidencia</h2><p>Vincula el caso al perfil cuando esté disponible.</p></div></div>
           <form id="incident-form"><div class="form-grid"><label class="full-field">Cliente<select id="incident-client"></select></label><label class="full-field">Descripción de la incidencia *<textarea id="incident-description" required rows="4" maxlength="500" placeholder="Describe brevemente lo reportado"></textarea></label><label class="full-field">Nota inicial de seguimiento (opcional)<textarea id="incident-followup" rows="3" maxlength="400" placeholder="Anota información confirmada"></textarea></label></div><div class="form-actions"><button class="button button-primary" type="submit">Guardar incidencia</button></div></form>
-        </section><section class="panel note-panel"><div class="panel-heading"><div><h2>Registro de seguimiento</h2><p>El MVP no impone categorías ni plazos predefinidos.</p></div></div><div class="summary-note"><strong>Seguimiento flexible</strong><span>Los estados, responsables y tiempos se pueden definir con el Product Owner. Aquí se guardan la descripción y las notas ingresadas.</span></div></section></div>
+        </section><section class="panel note-panel"><div class="panel-heading"><div><h2>Registro de seguimiento</h2><p>El prototipo no impone categorías ni plazos predefinidos.</p></div></div><div class="summary-note"><strong>Seguimiento flexible</strong><span>Los estados, responsables y tiempos se pueden definir con el Product Owner. Aquí se guardan la descripción y las notas ingresadas.</span></div></section></div>
         <section class="panel"><div class="panel-heading"><div><h2>Incidencias registradas</h2><p>Consulta los casos y sus notas.</p></div></div><div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Cliente</th><th>Descripción</th><th>Seguimiento</th><th></th></tr></thead><tbody id="incident-rows"></tbody></table></div></section>
       </section>
 
@@ -132,7 +132,7 @@
           </section>
         </div>
         <div class="split-grid">
-          <section class="panel"><div class="panel-heading"><div><h2>Registrar resultado de elegibilidad</h2><p>La regla se confirma con el PO; el MVP no la calcula automáticamente.</p></div></div>
+          <section class="panel"><div class="panel-heading"><div><h2>Registrar resultado de elegibilidad</h2><p>La regla se confirma con el PO; el prototipo no la calcula automáticamente.</p></div></div>
             <form id="eligibility-form"><div class="form-grid">
               <label>Promoción *<select id="eligibility-promotion" required></select></label>
               <label>Cliente *<select id="eligibility-client" required></select></label>
@@ -154,7 +154,7 @@
         <div class="metric-grid report-metrics"><article class="metric-card accent-blue"><div class="metric-label">Clientes</div><div class="metric-value" id="report-clients">0</div></article><article class="metric-card accent-teal"><div class="metric-label">Visitas e interacciones</div><div class="metric-value" id="report-visits">0</div></article><article class="metric-card accent-amber"><div class="metric-label">Incidencias</div><div class="metric-value" id="report-incidents">0</div></article><article class="metric-card accent-purple"><div class="metric-label">Constancias locales</div><div class="metric-value" id="report-communications">0</div></article></div>
         <div class="home-grid"><section class="panel"><div class="panel-heading"><div><h2>Clientes por etiqueta manual</h2><p>La etiqueta no se calcula automáticamente.</p></div></div><div id="report-segments" class="bar-list"></div></section><section class="panel"><div class="panel-heading"><div><h2>Actividad reciente</h2><p>Datos obtenidos de los registros locales.</p></div></div><div id="report-activity" class="activity-list"></div></section></div>
         <section class="panel"><div class="panel-heading"><div><h2>Registros de marketing</h2><p>Campañas, promociones y constancias se cuentan por separado.</p></div></div><div class="table-wrap"><table><thead><tr><th>Tipo de registro</th><th>Cantidad</th><th>Observación</th></tr></thead><tbody id="report-marketing-types"></tbody></table></div></section>
-        <p class="hint report-note">Los indicadores muestran los datos guardados en este navegador. No incluye ingresos, reservas ni métricas que no hayan sido definidas para el proyecto. La automatización opcional no forma parte de este MVP.</p>
+        <p class="hint report-note">Los indicadores muestran los datos guardados en este navegador. No incluye ingresos, reservas ni métricas que no hayan sido definidas para el proyecto. La automatización opcional no forma parte de este prototipo.</p>
       </section>
     </main>
   </div>

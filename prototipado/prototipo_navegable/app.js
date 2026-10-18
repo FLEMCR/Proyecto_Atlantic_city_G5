@@ -1,4 +1,4 @@
-/* MVP local para perfiles, visitas, incidencias, segmentación, campañas y promociones. */
+/* Prototipo con navegación: perfiles, visitas, incidencias, segmentación, campañas y promociones. */
 (() => {
   'use strict';
   const STORE_KEY = 'atlanticCityMvp_v3';

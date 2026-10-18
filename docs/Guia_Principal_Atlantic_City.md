@@ -120,13 +120,13 @@ Es la parte con la que una persona interactúa: estructura, formularios, control
 
 ### Lógica del sistema
 
-La lógica del servidor, si se implementa, recibe solicitudes, valida reglas y coordina operaciones. El material del curso menciona Python entre las tecnologías posibles, pero no fija un framework para este proyecto. La carpeta `desarrollo/python/` se mantiene como espacio de trabajo pendiente de confirmación.
+La lógica del servidor, si llega a implementarse, recibe solicitudes, valida reglas y coordina operaciones. Ni el sílabo ni la estructura de entrega fijan para esta etapa un lenguaje de servidor, por lo que el proyecto no tiene código de backend ni carpetas reservadas para él. Si el curso lo requiere más adelante, se acuerda con el profesor antes de implementarlo.
 
 ### Persistencia
 
-Una base relacional puede mantener entidades y relaciones entre perfiles, visitas, incidencias, campañas, promociones y registros de comunicación. Los materiales de clase nombran motores posibles, pero no confirman cuál se usará. La carpeta `desarrollo/sql/` no representa una selección de motor ni una integración realizada.
+Una base relacional podría mantener entidades y relaciones entre perfiles, visitas, incidencias, campañas, promociones y registros de comunicación. El motor no está definido por los materiales de esta etapa y no se ha creado un esquema.
 
-El MVP actual usa almacenamiento local del navegador y datos de demostración. Este mecanismo facilita probar la interfaz; no equivale a una base central ni sustituye validación de servidor.
+El MVP y el prototipo con navegación usan almacenamiento local del navegador y datos de demostración. Este mecanismo facilita probar la interfaz; no equivale a una base central ni sustituye validación de servidor.
 
 ## 9. Privacidad, datos y comunicación
 
@@ -147,13 +147,43 @@ El MVP actual usa almacenamiento local del navegador y datos de demostración. E
 7. Relación entre campaña y promoción, vigencia y eventual aprobación.
 8. Indicadores, periodos y filtros de reportes.
 9. Si se prioriza automatización y qué tarea se probaría.
-10. Si el curso requiere Python, qué framework se utilizaría y qué motor de base de datos se confirma.
+10. Si el curso requiere más adelante un lenguaje de servidor, un framework y un motor de base de datos; nada de esto está fijado en el sílabo ni en la estructura de entrega para la etapa actual.
 
 Hasta que se acuerden, estos puntos permanecen pendientes; no se convierten en requisitos por estar ilustrados en una imagen o un prototipo.
 
 ## 11. Fuentes de trabajo
 
-- Sílabo del proyecto, copia en la raíz de `proyecto_final/` y original en `../uploads/`.
+- Sílabo del proyecto, copia en `../curso/Silabo_EFSRT_Desarrollo_Capa_de_Vista.pdf` y original en `../../uploads/`.
+- Estructura propuesta del trabajo, entregada por el profesor; original en `../../uploads/Estructura propuesta del trabajo.pdf`.
+- Caso de ejemplo y caso resuelto del profesor, usados solo como referencia de formato; originales en `../../uploads/Caso.pdf` y `../../uploads/CasoResuelto.pdf`.
 - Product Backlog consolidado en `backlog/Product_Backlog_Atlantic_City.md`.
 - Imágenes del modelo en `modelado/`.
-- Materiales de clase y ejemplos originales en `../uploads/`.
+- Informe de avance en `../informe/Avance_Atlantic_City.docx`, con los quince puntos de la estructura; su guía de mantenimiento está en `../informe/Guia_Informe_de_Avance.md`.
+- Materiales de clase y ejemplos originales en `../../uploads/`.
+
+## 12. Correspondencia con la estructura de entrega
+
+La estructura propuesta por el profesor organiza el trabajo en quince puntos. Esta tabla indica dónde está cada uno y qué falta para el cierre de la semana 7.
+
+| Punto | Contenido | Estado |
+|---|---|---|
+| Portada | Institución, carrera, curso, título, integrantes, docente, ciclo y año | En el informe de avance; faltan los nombres de los integrantes |
+| 1. Descripción del negocio | Atlantic City, áreas, situación actual, clientes y usuarios | Listo en el informe de avance |
+| 2. Problema del negocio | Problema principal, específicos, consecuencias y objetivo | Listo en el informe de avance |
+| 3. Procesos del negocio | Nombre, objetivo, participantes y descripción breve | Listo en el informe y en esta guía |
+| 4. Diagrama de procesos en Bizagi | Proceso actual AS IS | Listo: `modelado/` con la vista principal y el subproceso |
+| 5. Metodología Scrum | Equipo y Sprints | Listo: `docs/Scrum_Guia_Atlantic_City.md` |
+| 6. Product Backlog | ID, historia, prioridad y Sprint | Listo: `backlog/` |
+| 7. Historias de usuario | Como/Quiero/Para y criterios de aceptación | Listo: 13 historias en `backlog/` |
+| 8. Wireframes digitales | Pantallas como dibujo, sin funcionamiento | Listo: `prototipado/wireframe_manual.png` y `wireframe_digital.png` |
+| 9. MVP | Funcionalidades mínimas que sí se implementan | Listo: `prototipado/MVP/` |
+| 10. Prototipo con navegación | Las mismas pantallas conectadas | Listo: `prototipado/prototipo_navegable/` |
+| 11. Implementación mínima | HTML, CSS, JavaScript, formularios, navegación, validaciones y datos simulados | Listo en las dos versiones funcionales; se explica en `desarrollo/Guia_Desarrollo.md` |
+| 12. Casos de uso | Actores y un diagrama general | Pendiente para la semana 7 |
+| 13. Descripción de casos de uso | Tres o cuatro casos principales | Pendiente para la semana 7 |
+| 14. Diagramas de secuencia | Dos o tres: actor, interfaz, sistema y base de datos | Pendiente para la semana 7 |
+| 15. Diagrama de clases | Diagrama básico derivado de las funcionalidades | Pendiente para la semana 7 |
+
+El informe de avance reúne los puntos 1 a 10 en el orden de la estructura. En el ejemplo resuelto del profesor el prototipo aparece antes que el MVP; en este proyecto se sigue el orden de la estructura propuesta: wireframes, MVP y después prototipo con navegación.
+
+Tener el modelado terminado en Bizagi significa que el equipo ya recorrió los procesos del caso: identificó participantes, actividades, decisiones y límites antes de diseñar pantallas. Esa es la razón por la que las guías, el backlog y los prototipos usan el mismo vocabulario del diagrama.
