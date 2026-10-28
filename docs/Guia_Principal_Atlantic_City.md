@@ -85,7 +85,7 @@ El flujo de automatización es opcional. Antes de desarrollarlo, el PO debe prio
 
 ## 6. Subproceso de segmentación
 
-En la vista principal, «Segmentación de clientes» aparece como subproceso colapsado. Su detalle está en `modelado/SUBPROCESO.png`: un flujo interno del sistema, con inicio y fin simples, y cinco tareas consecutivas:
+En la vista principal, «Segmentación de clientes» aparece como subproceso colapsado. Su detalle está en `../modelado/SUBPROCESO.png`: un flujo interno del sistema, con inicio y fin simples, y cinco tareas consecutivas:
 
 1. Consultar frecuencia de visitas del cliente.
 2. Consultar nivel de gasto del cliente.
@@ -156,10 +156,11 @@ Hasta que se acuerden, estos puntos permanecen pendientes; no se convierten en r
 - Sílabo del proyecto, copia en `../curso/Silabo_EFSRT_Desarrollo_Capa_de_Vista.pdf` y original en `../../uploads/`.
 - Estructura propuesta del trabajo, entregada por el profesor; original en `../../uploads/Estructura propuesta del trabajo.pdf`.
 - Caso de ejemplo y caso resuelto del profesor, usados solo como referencia de formato; originales en `../../uploads/Caso.pdf` y `../../uploads/CasoResuelto.pdf`.
-- Product Backlog consolidado en `backlog/Product_Backlog_Atlantic_City.md`.
+- Product Backlog consolidado en `../backlog/Product_Backlog_Atlantic_City.md`.
 - Imágenes del modelo en `modelado/`.
-- Informe de avance en `../informe/Avance_Atlantic_City.docx`, con los quince puntos de la estructura; su guía de mantenimiento está en `../informe/Guia_Informe_de_Avance.md`.
+- Informe de avance en `../informe/Avance_Atlantic_City.docx`, con los quince puntos de la estructura; su guía de mantenimiento está en `Guia_Informe_de_Avance.md`.
 - Materiales de clase y ejemplos originales en `../../uploads/`.
+- Material complementario del profesor sobre casos de uso, secuencias, clases y StarUML, en `../curso/material_complementario/`; fija el formato del punto 13 del informe y de la especificación de `../modelado/casos_de_uso/`.
 
 ## 12. Correspondencia con la estructura de entrega
 
@@ -172,13 +173,13 @@ La estructura propuesta por el profesor organiza el trabajo en quince puntos. Es
 | 2. Problema del negocio | Problema principal, específicos, consecuencias y objetivo | Listo en el informe de avance |
 | 3. Procesos del negocio | Nombre, objetivo, participantes y descripción breve | Listo en el informe y en esta guía |
 | 4. Diagrama de procesos en Bizagi | Proceso actual AS IS | Listo: `modelado/` con la vista principal y el subproceso |
-| 5. Metodología Scrum | Equipo y Sprints | Listo: `docs/Scrum_Guia_Atlantic_City.md` |
+| 5. Metodología Scrum | Equipo y Sprints | Listo: `Scrum_Guia_Atlantic_City.md` |
 | 6. Product Backlog | ID, historia, prioridad y Sprint | Listo: `backlog/` |
 | 7. Historias de usuario | Como/Quiero/Para y criterios de aceptación | Listo: 13 historias en `backlog/` |
-| 8. Wireframes digitales | Pantallas como dibujo, sin funcionamiento | Listo: `prototipado/wireframe_manual.png` y `wireframe_digital.png` |
+| 8. Wireframes digitales | Pantallas como dibujo, sin funcionamiento | Listo: `../prototipado/wireframe_manual.png` y `../prototipado/wireframe_digital.png` |
 | 9. MVP | Funcionalidades mínimas que sí se implementan | Listo: `prototipado/MVP/` |
 | 10. Prototipo con navegación | Las mismas pantallas conectadas | Listo: `prototipado/prototipo_navegable/` |
-| 11. Implementación mínima | HTML, CSS, JavaScript, formularios, navegación, validaciones y datos simulados | Listo en las dos versiones funcionales; se explica en `desarrollo/Guia_Desarrollo.md` |
+| 11. Implementación mínima | HTML, CSS, JavaScript, formularios, navegación, validaciones y datos simulados | Listo en las dos versiones funcionales; se explica en `Guia_Desarrollo.md` |
 | 12. Casos de uso | Actores y un diagrama general | Pendiente para la semana 7 |
 | 13. Descripción de casos de uso | Tres o cuatro casos principales | Pendiente para la semana 7 |
 | 14. Diagramas de secuencia | Dos o tres: actor, interfaz, sistema y base de datos | Pendiente para la semana 7 |

@@ -1,14 +1,14 @@
 # Guía de código del prototipo con navegación — Atlantic City
 
-Explica cómo funciona el prototipo de siete vistas (`index.html`, `styles.css`, `app.js` y la copia en archivo único): en qué se basa, qué hace cada función, cómo se usa dentro del proyecto y qué patrones se pueden reutilizar en otros proyectos.
+Explica cómo funciona el prototipo de siete vistas (`../prototipado/prototipo_navegable/index.html`, `../prototipado/prototipo_navegable/styles.css`, `../prototipado/prototipo_navegable/app.js` y la copia en archivo único): en qué se basa, qué hace cada función, cómo se usa dentro del proyecto y qué patrones se pueden reutilizar en otros proyectos.
 
 ## 1. En qué se basa este código
 
 | Fuente | Qué aporta al código |
 |---|---|
 | Punto 10 de la estructura de entrega (prototipo con navegación) | El objetivo central: conectar las pantallas del wireframe para demostrar que se entiende la navegación entre interfaces. |
-| Wireframes de `../wireframe_manual.png` y `../wireframe_digital.png` | La organización de las secciones: cabecera, menú lateral, indicadores, tablas y zonas de marketing. |
-| Patrones probados en el MVP (`../MVP/`) | Escapado de texto, selects que conservan su selección, estados vacíos, toast, validaciones con mensaje y foco. |
+| Wireframes de `../prototipado/wireframe_manual.png` y `../prototipado/wireframe_digital.png` | La organización de las secciones: cabecera, menú lateral, indicadores, tablas y zonas de marketing. |
+| Patrones probados en el MVP (`../prototipado/MVP/`) | Escapado de texto, selects que conservan su selección, estados vacíos, toast, validaciones con mensaje y foco. |
 | Reglas acordadas con el Product Owner | Campaña distinta de promoción; visita conservada sin incidencia; clasificación y elegibilidad manuales; constancias locales; datos de demostración. |
 
 La diferencia de fondo con el MVP: aquí el protagonista no es un recorrido mínimo sino el **cambio de vista sin recargar la página** y la coherencia entre siete pantallas que comparten un mismo estado.
@@ -17,12 +17,12 @@ La diferencia de fondo con el MVP: aquí el protagonista no es un recorrido mín
 
 | Archivo | Responsabilidad |
 |---|---|
-| `index.html` | Barra lateral, cabecera, siete `section.view`, formularios por vista y tablas vacías que JavaScript rellena. |
-| `styles.css` | Layout de aplicación: sidebar fijo, área de contenido, chips de estado, tablas y tres puntos de quiebre. |
-| `app.js` | Estado compartido, navegación, render por vista, formularios, búsqueda global y exportación CSV. |
-| `Atlantic_City_Prototipo_Navegable_Archivo_unico.html` | El mismo prototipo con CSS y JS incrustados, para abrir con doble clic o adjuntar sin servidor. Cualquier cambio en los archivos separados debe reflejarse aquí. |
+| `../prototipado/prototipo_navegable/index.html` | Barra lateral, cabecera, siete `section.view`, formularios por vista y tablas vacías que JavaScript rellena. |
+| `../prototipado/prototipo_navegable/styles.css` | Layout de aplicación: sidebar fijo, área de contenido, chips de estado, tablas y tres puntos de quiebre. |
+| `../prototipado/prototipo_navegable/app.js` | Estado compartido, navegación, render por vista, formularios, búsqueda global y exportación CSV. |
+| `../prototipado/prototipo_navegable/Atlantic_City_Prototipo_Navegable_Archivo_unico.html` | El mismo prototipo con CSS y JS incrustados, para abrir con doble clic o adjuntar sin servidor. Cualquier cambio en los archivos separados debe reflejarse aquí. |
 
-## 3. `index.html` por zonas
+## 3. index.html por zonas
 
 1. **`aside#sidebar`**: marca y `nav` con siete botones `.nav-link` que llevan `data-view="home|clients|visits|incidents|segments|promotions|reports"`. El atributo `data-view` es el contrato entre HTML y JavaScript: el botón no sabe qué hacer, solo dice a qué vista pertenece.
 2. **`header`**: `#menu-toggle` para abrir el sidebar en móvil, buscador global `#global-search`, etiqueta «Datos de demostración», `#today-label` y la placa de usuario del panel.
@@ -38,7 +38,7 @@ La diferencia de fondo con el MVP: aquí el protagonista no es un recorrido mín
 
 Los botones de acción dentro de tablas (`data-edit-client`, `data-followup`) y los accesos directos (`data-go`) no tienen `onclick` inline: el JavaScript los captura por delegación de eventos, lo que permite regenerar las filas sin volver a enchufar listeners.
 
-## 4. `styles.css` por bloques
+## 4. styles.css por bloques
 
 1. **Variables y base**: paleta corporativa sobria, tipografías del sistema, `body` en `display:flex` con `height:100vh` y `overflow:hidden` para que el scroll viva dentro del contenido y no en la página.
 2. **Sidebar**: ancho fijo por variable, fondo oscuro, `.nav-links li` con borde izquierdo que se ilumina en `.active` y en hover.
@@ -48,7 +48,7 @@ Los botones de acción dentro de tablas (`data-edit-client`, `data-followup`) y 
 6. **Actividad y barras**: `.activity-item`, `.bar-row` con `.bar-fill` cuya anchura pone JavaScript en porcentaje.
 7. **Tres `@media`**: a 1150 px las tarjetas pasan a dos columnas; a 760 px el sidebar se vuelve lateral oculto que abre `#menu-toggle` con la clase `.open`; a 430 px todo se apila y las tablas scrollan horizontalmente.
 
-## 5. `app.js` por bloques
+## 5. app.js por bloques
 
 IIFE con `'use strict'`, igual que el MVP.
 
@@ -239,7 +239,7 @@ a.click(); URL.revokeObjectURL(url);
 
 ## 11. Diferencias con el MVP, en una tabla
 
-| Aspecto | MVP (`../MVP/`) | Prototipo con navegación (esta carpeta) |
+| Aspecto | MVP (`../prototipado/MVP/`) | Prototipo con navegación (esta carpeta) |
 |---|---|---|
 | Pantallas | Una | Siete conectadas |
 | Foco de la demostración | Un recorrido mínimo completo | La navegación y la coherencia entre pantallas |

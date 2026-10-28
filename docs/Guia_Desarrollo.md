@@ -13,12 +13,12 @@ El código está en dos carpetas, cada una con su propósito:
 | `../prototipado/MVP/` | 9. MVP | Una sola pantalla con el recorrido mínimo funcional |
 | `../prototipado/prototipo_navegable/` | 10. Prototipo con navegación | Siete vistas conectadas entre sí |
 
-Ambas versiones se mantienen con archivos separados (`index.html`, `styles.css`, `app.js`), como se organiza un trabajo real. El prototipo incluye además una copia en archivo único para abrirlo sin servidor.
+Ambas versiones se mantienen con archivos separados (index.html, styles.css, app.js en cada carpeta), como se organiza un trabajo real. El prototipo incluye además una copia en archivo único para abrirlo sin servidor.
 
 Cada carpeta tiene su guía de código detallada, función por función y con patrones reutilizables:
 
-- `../prototipado/MVP/Guia_Codigo_MVP.md`
-- `../prototipado/prototipo_navegable/Guia_Codigo_Prototipo_Navegable.md`
+- `Guia_Codigo_MVP.md`
+- `Guia_Codigo_Prototipo_Navegable.md`
 
 Esta guía desarrolla los conceptos generales de la capa de vista; las guías de código entran al detalle de cada archivo.
 
@@ -33,7 +33,7 @@ HTML (estructura) ⇄ JavaScript (eventos, validación y estado local)
       └──────── CSS (presentación)   └── localStorage del navegador
 ```
 
-- El navegador carga `index.html` y los archivos enlazados.
+- El navegador carga el index.html de la versión correspondiente y los archivos enlazados.
 - JavaScript actualiza la vista y conserva los registros en `localStorage` del mismo navegador y origen.
 - No hay autenticación, API, servidor de negocio, almacenamiento compartido ni conexión con Atlantic City.
 - Los registros usados para empezar son ficticios y están identificados como datos de demostración.
@@ -46,16 +46,16 @@ Ubicación: `../prototipado/MVP/`.
 
 | Archivo | Propósito | Puntos de lectura |
 |---|---|---|
-| `index.html` | Estructura semántica, formulario, resumen, conteos e historial. | `lang="es"`, metadatos, `header`, `main`, `section`, formularios etiquetados, estados y enlaces a CSS/JS. |
-| `styles.css` | Colores, distribución, tarjetas, mensajes y adaptación a pantallas. | Variables CSS en `:root`, clases de panel/formulario, diseño con Grid y breakpoints de `@media`. |
-| `app.js` | Estado, eventos, validaciones, persistencia local y renderizado. | `STORE_KEY`, `sampleData`, `loadState`, `save`, `renderAll`, `submitAttention` y listeners. |
+| `../prototipado/MVP/index.html` | Estructura semántica, formulario, resumen, conteos e historial. | `lang="es"`, metadatos, `header`, `main`, `section`, formularios etiquetados, estados y enlaces a CSS/JS. |
+| `../prototipado/MVP/styles.css` | Colores, distribución, tarjetas, mensajes y adaptación a pantallas. | Variables CSS en `:root`, clases de panel/formulario, diseño con Grid y breakpoints de `@media`. |
+| `../prototipado/MVP/app.js` | Estado, eventos, validaciones, persistencia local y renderizado. | `STORE_KEY`, `sampleData`, `loadState`, `save`, `renderAll`, `submitAttention` y listeners. |
 | `README.md` | Instrucciones de ejecución y alcance. | Servidor estático, almacenamiento local y limitaciones. |
 
 ### 3.1 Flujo al abrir la página
 
 1. El navegador interpreta el HTML y crea el DOM.
 2. El CSS enlazado define cómo se presenta el DOM.
-3. Al final del `body` se carga `app.js`.
+3. Al final del body se carga app.js.
 4. El JavaScript obtiene elementos con `querySelector`, lee o inicia el estado, enlaza eventos y ejecuta el render inicial.
 5. Cuando la persona completa el formulario y lo envía, el código valida los campos acordados en el prototipo, actualiza el objeto local, guarda y vuelve a pintar resumen, historial y conteos.
 
@@ -103,10 +103,10 @@ Ubicación: `../prototipado/prototipo_navegable/`.
 
 | Archivo | Propósito | Puntos de lectura |
 |---|---|---|
-| `index.html` | Estructura de las siete vistas, menú lateral y formularios. | `nav` con botones `data-view`, `section.view` por pantalla, tablas con `tbody` vacío que se rellena por JavaScript. |
-| `styles.css` | Presentación, barra lateral, tarjetas, tablas y adaptación. | Clases `.view` y `.active` para mostrar una sola vista, Grid para paneles, `@media` para pantallas estrechas. |
-| `app.js` | Navegación entre vistas, validaciones, registros, reportes y exportación CSV. | `showView()`, `renderAll()`, `openClientForm()`, `exportCSV()`, `escapeHtml()`. |
-| `Atlantic_City_Prototipo_Navegable_Archivo_unico.html` | El mismo prototipo en un solo archivo. | CSS y JavaScript incrustados; útil para adjuntar o abrir sin servidor. |
+| `../prototipado/prototipo_navegable/index.html` | Estructura de las siete vistas, menú lateral y formularios. | `nav` con botones `data-view`, `section.view` por pantalla, tablas con `tbody` vacío que se rellena por JavaScript. |
+| `../prototipado/prototipo_navegable/styles.css` | Presentación, barra lateral, tarjetas, tablas y adaptación. | Clases `.view` y `.active` para mostrar una sola vista, Grid para paneles, `@media` para pantallas estrechas. |
+| `../prototipado/prototipo_navegable/app.js` | Navegación entre vistas, validaciones, registros, reportes y exportación CSV. | `showView()`, `renderAll()`, `openClientForm()`, `exportCSV()`, `escapeHtml()`. |
+| `../prototipado/prototipo_navegable/Atlantic_City_Prototipo_Navegable_Archivo_unico.html` | El mismo prototipo en un solo archivo. | CSS y JavaScript incrustados; útil para adjuntar o abrir sin servidor. |
 | `README.md` | Ejecución, recorrido y límites. | Puerto sugerido, comparación con el MVP. |
 
 La clave de persistencia es `atlanticCityMvp_v3`. Como difiere de la del MVP, los registros de una versión no se mezclan con los de la otra aunque se abran en el mismo navegador y origen.
@@ -188,7 +188,7 @@ Cambiar la apariencia en CSS sin alterar el significado del HTML facilita manten
 
 ## 7. JavaScript del navegador
 
-JavaScript conecta acciones y vista. En este proyecto se usa JavaScript nativo, sin paquetes externos ni framework. Patrones observables en los dos `app.js`:
+JavaScript conecta acciones y vista. En este proyecto se usa JavaScript nativo, sin paquetes externos ni framework. Patrones observables en los dos app.js del proyecto:
 
 - `$()` y `$$()` encapsulan consultas de DOM;
 - `addEventListener()` enlaza acciones;
@@ -198,6 +198,10 @@ JavaScript conecta acciones y vista. En este proyecto se usa JavaScript nativo, 
 - `try/catch` permite detectar fallos de lectura o escritura local.
 
 Para nuevas funciones, mantener separados estos pasos: leer entradas, validarlas, aplicar una transformación pequeña al estado, guardar si corresponde y actualizar la vista. No colocar reglas de negocio no confirmadas en una función solo porque resulte fácil programarlas.
+
+### Trazabilidad con los casos de uso
+
+Cada validación de la tabla anterior corresponde a un mensaje con identificador MSJ en `../modelado/casos_de_uso/Especificacion_Casos_de_Uso_Atlantic_City.md`. Si se agrega, cambia o elimina un mensaje en el código, se actualiza el catálogo en el mismo cambio; la especificación y el punto 13 del informe deben poder provocarse en el navegador tal como están escritos.
 
 ### Límite de `localStorage`
 

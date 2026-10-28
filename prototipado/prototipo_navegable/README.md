@@ -18,7 +18,7 @@ Abre `http://localhost:4174`. Mantén el mismo origen y navegador para conservar
 - `styles.css`: presentación, navegación lateral y adaptación a pantallas pequeñas.
 - `app.js`: cambio de vista, validaciones locales, registros, reportes y exportación CSV.
 - `Atlantic_City_Prototipo_Navegable_Archivo_unico.html`: el mismo prototipo reunido en un solo archivo, para abrirlo con doble clic o adjuntarlo sin servidor.
-- `Guia_Codigo_Prototipo_Navegable.md`: guía detallada del código: navegación entre vistas, renders, formularios, exportación CSV y patrones reutilizables.
+- `../../docs/Guia_Codigo_Prototipo_Navegable.md`: guía detallada del código: navegación entre vistas, renders, formularios, exportación CSV y patrones reutilizables.
 
 ## Recorrido de navegación
 
@@ -40,4 +40,4 @@ Ninguna de las dos versiones reemplaza a la otra: el MVP muestra el mínimo que 
 
 Los datos son de demostración y se guardan solo en el navegador. No hay backend, base de datos central, autenticación, integración con sistemas de Atlantic City ni envío real de mensajes. La clasificación y la elegibilidad se ingresan manualmente; un resultado «Aplica» crea únicamente una constancia local.
 
-Para el detalle del recorrido, las pruebas manuales y las decisiones pendientes del Product Owner, consulta la [guía de prototipado](../Guia_Prototipado_y_MVP.md). Para estudiar el código por dentro, consulta `Guia_Codigo_Prototipo_Navegable.md`; para la visión general de la capa de vista, la [guía de desarrollo](../../desarrollo/Guia_Desarrollo.md).
+Para el detalle del recorrido, las pruebas manuales y las decisiones pendientes del Product Owner, consulta la [guía de prototipado](../../docs/Guia_Prototipado_y_MVP.md). Para estudiar el código por dentro, consulta `../../docs/Guia_Codigo_Prototipo_Navegable.md`; para la visión general de la capa de vista, la [guía de desarrollo](../../docs/Guia_Desarrollo.md).

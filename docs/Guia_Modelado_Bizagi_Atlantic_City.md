@@ -2,8 +2,8 @@
 
 ## 1. Qué contiene la carpeta
 
-- `Atlantic_city_grupo_cinco.png`: vista principal integrada del proceso.
-- `SUBPROCESO.png`: detalle del subproceso de segmentación de clientes.
+- `../modelado/Atlantic_city_grupo_cinco.png`: vista principal integrada del proceso.
+- `../modelado/SUBPROCESO.png`: detalle del subproceso de segmentación de clientes.
 
 Las dos imágenes se copiaron sin alterar el contenido. La guía explica cómo leerlas y cómo responder preguntas sobre sus participantes, actividades, decisiones y límites.
 
@@ -11,7 +11,7 @@ El archivo editable del modelo es un `.bpm`, que es el formato binario propio de
 
 ## 2. Qué demuestra el modelo terminado
 
-La estructura de entrega pide el diagrama del proceso actual (AS IS): cómo se realiza hoy el trabajo. El diagrama de `Atlantic_city_grupo_cinco.png` cumple ese punto y el detalle de `SUBPROCESO.png` amplía una de sus actividades.
+La estructura de entrega pide el diagrama del proceso actual (AS IS): cómo se realiza hoy el trabajo. El diagrama de `../modelado/Atlantic_city_grupo_cinco.png` cumple ese punto y el detalle de `../modelado/SUBPROCESO.png` amplía una de sus actividades.
 
 Tener el modelado terminado en Bizagi significa que el equipo ya conoce los procesos del caso. Antes de dibujar fue necesario leer la situación de Atlantic City y responder preguntas concretas: quién participa, qué hace cada área, en qué momento interviene el sistema, qué decisiones dividen el recorrido, qué rutas son independientes y dónde termina cada una. Ese conocimiento es el que después se refleja en las pantallas, en las historias de usuario y en las respuestas durante la sustentación.
 
@@ -57,7 +57,7 @@ Lee el flujo desde el inicio de atención hacia la derecha y siguiendo las salid
    - **Sí:** se registra y atiende la incidencia conforme al proceso que confirme el PO.
    - **No:** no se crea un caso.
 7. El sistema guarda/actualiza la visita y el historial del cliente. El historial se conserva tanto con incidencia como sin ella.
-8. Se ejecuta el subproceso **Segmentación de clientes**, cuyo detalle aparece en `SUBPROCESO.png`.
+8. Se ejecuta el subproceso **Segmentación de clientes**, cuyo detalle aparece en `../modelado/SUBPROCESO.png`.
 9. **¿Cumple criterios de promoción?**
    - **No:** la atención termina sin registrar ni comunicar una promoción. La visita ya debe permanecer en el historial.
    - **Sí:** se selecciona/prepara la oferta correspondiente, se registra y se comunica por el canal disponible o de forma identificada como simulada; luego se actualiza el historial de promociones.
@@ -92,7 +92,7 @@ La prueba y la autorización son decisiones diferentes. Sin priorización del PO
 
 ## 5. Detalle del subproceso de segmentación
 
-`SUBPROCESO.png` amplía la caja colapsada «Segmentación de clientes» del flujo principal. Está dibujado en un carril «Sistema CRM / datos», con un evento de inicio, cinco tareas en secuencia y un evento de fin:
+`../modelado/SUBPROCESO.png` amplía la caja colapsada «Segmentación de clientes» del flujo principal. Está dibujado en un carril «Sistema CRM / datos», con un evento de inicio, cinco tareas en secuencia y un evento de fin:
 
 1. **Consultar frecuencia de visitas del cliente.**
 2. **Consultar nivel de gasto del cliente.**
@@ -134,7 +134,7 @@ Una explicación de dos minutos puede seguir este orden:
 3. **Ruta principal:** identificación → perfil existente o alta → visita/interacción → incidencia opcional → historial → segmentación → decisión promocional.
 4. **Decisiones:** leer una compuerta como una condición con dos salidas; el ejemplo más importante es promoción aplica/no aplica.
 5. **Rutas independientes:** campaña, reporte y automatización tienen disparadores propios y no forman parte obligatoria de cada atención.
-6. **Detalle:** mostrar `SUBPROCESO.png` y nombrar los cuatro criterios y la tarea final de clasificación.
+6. **Detalle:** mostrar `../modelado/SUBPROCESO.png` y nombrar los cuatro criterios y la tarea final de clasificación.
 7. **Límites:** reglas comerciales, periodo, indicadores y tecnología pendientes no se presentan como confirmados.
 
 ## 8. Preguntas frecuentes para los cuatro Developers
@@ -175,7 +175,7 @@ Cualquiera de los cuatro Developers debe poder abrir el modelo y explicar cómo 
 4. **Continuar el diagrama.** A partir del inicio se usa el menú circular: se selecciona la siguiente figura, se arrastra y se suelta donde corresponde. Así se agregan tareas, compuertas y eventos de fin.
 5. **Tareas.** Cada actividad se coloca en el carril de quien la ejecuta. Una tarea en el carril del sistema indica responsabilidad del sistema en el proceso, no código existente.
 6. **Compuertas.** Los rombos dividen el recorrido. Las etiquetas «Sí» y «No» deben coincidir con las salidas dibujadas; esa es la primera revisión al comparar el diagrama con la explicación.
-7. **Subproceso.** Una actividad puede convertirse en subproceso para mantener legible la vista principal. Ese es el caso de «Segmentación de clientes», cuyo detalle está en `SUBPROCESO.png`.
+7. **Subproceso.** Una actividad puede convertirse en subproceso para mantener legible la vista principal. Ese es el caso de «Segmentación de clientes», cuyo detalle está en `../modelado/SUBPROCESO.png`.
 8. **Tamaño del Pool.** Se ajusta arrastrando la esquina hasta cubrir todas las actividades.
 9. **Revisión final.** Antes de exportar la imagen se comprueba que cada flujo tenga origen y destino, que las decisiones tengan sus dos salidas y que ninguna actividad quede fuera de su carril.
 

@@ -2,7 +2,7 @@
 
 ## 1. Para qué sirve
 
-El Product Backlog reúne las necesidades del sistema ordenadas por prioridad. La versión consolidada de referencia está en [`backlog/Product_Backlog_Atlantic_City.md`](../backlog/Product_Backlog_Atlantic_City.md), y su versión de presentación en Word está en `backlog/Product_Backlog_Atlantic_City.docx`.
+El Product Backlog reúne las necesidades del sistema ordenadas por prioridad. La versión consolidada de referencia está en [`../backlog/Product_Backlog_Atlantic_City.md`](../backlog/Product_Backlog_Atlantic_City.md), y su versión de presentación en Word está en `../backlog/Product_Backlog_Atlantic_City.docx`.
 
 El Product Backlog no es una lista de tareas que se deban programar todas al mismo tiempo. El PO decide prioridades y aclaraciones de producto; los cuatro Developers seleccionan y organizan trabajo para cada Sprint según el objetivo y la capacidad.
 

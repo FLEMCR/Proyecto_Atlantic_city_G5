@@ -1,6 +1,6 @@
 # Guía de código del MVP — Atlantic City
 
-Explica línea por línea cómo funciona el MVP sencillo de `index.html`, `styles.css` y `app.js`: en qué se basa cada decisión, qué hace cada función, cómo se usa dentro del proyecto y qué partes se pueden reutilizar en otros proyectos.
+Explica línea por línea cómo funciona el MVP sencillo de `../prototipado/MVP/index.html`, `../prototipado/MVP/styles.css` y `../prototipado/MVP/app.js`: en qué se basa cada decisión, qué hace cada función, cómo se usa dentro del proyecto y qué partes se pueden reutilizar en otros proyectos.
 
 ## 1. En qué se basa este código
 
@@ -9,7 +9,7 @@ Explica línea por línea cómo funciona el MVP sencillo de `index.html`, `style
 | Punto 9 de la estructura de entrega (MVP) | La idea de elegir funcionalidades mínimas reales en lugar de programar todo el sistema: una sola pantalla y un recorrido demostrable. |
 | Punto 11 de la estructura (implementación mínima) | HTML, CSS y JavaScript sin frameworks, formularios con validaciones y datos simulados. |
 | Sílabo del curso | Los conceptos del negocio: perfil de cliente, visita o interacción, incidencia, cuatro criterios de segmentación, campaña y promoción como entidades distintas. |
-| Reglas acordadas con el Product Owner y registradas en `../../../REGLAS_Y_DATOS_DEL_PROYECTO.md` | La visita se conserva aunque no haya incidencia ni promoción; «No aplica» no crea comunicación; «Aplica» crea solo una constancia local; la clasificación y la elegibilidad son manuales; los datos son de demostración. |
+| Reglas acordadas con el Product Owner y registradas en `../../REGLAS_Y_DATOS_DEL_PROYECTO.md` | La visita se conserva aunque no haya incidencia ni promoción; «No aplica» no crea comunicación; «Aplica» crea solo una constancia local; la clasificación y la elegibilidad son manuales; los datos son de demostración. |
 | Patrones de interfaz del ejemplo de pedido del curso | Organización compacta en pasos numerados, formulario a la izquierda y resumen inmediato a la derecha. Del ejemplo solo se tomó el patrón visual, no sus productos ni sus reglas. |
 
 Ninguna regla de negocio inventada vive en este código: cuando una definición está pendiente del Product Owner, el campo existe como texto libre o como dato «No disponible», y el mensaje de la interfaz lo dice.
@@ -18,13 +18,13 @@ Ninguna regla de negocio inventada vive en este código: cuando una definición 
 
 | Archivo | Responsabilidad | Tamaño aproximado |
 |---|---|---|
-| `index.html` | Estructura y significado: encabezado, formulario por pasos, panel resumen, conteos, historial y pie. | 121 líneas |
-| `styles.css` | Presentación: paleta, tarjetas, recibo, insignias y adaptación a tres anchos de pantalla. | 5 líneas comprimidas (una regla por línea) |
-| `app.js` | Comportamiento: estado local, validaciones, eventos, renderizado y mensajes. | 258 líneas |
+| `../prototipado/MVP/index.html` | Estructura y significado: encabezado, formulario por pasos, panel resumen, conteos, historial y pie. | 121 líneas |
+| `../prototipado/MVP/styles.css` | Presentación: paleta, tarjetas, recibo, insignias y adaptación a tres anchos de pantalla. | 5 líneas comprimidas (una regla por línea) |
+| `../prototipado/MVP/app.js` | Comportamiento: estado local, validaciones, eventos, renderizado y mensajes. | 258 líneas |
 
 La separación no es decorativa: permite revisar estructura, presentación y lógica por separado, y es lo que pide la guía de desarrollo como práctica de trabajo real.
 
-## 3. `index.html` por secciones
+## 3. index.html por secciones
 
 1. **`<head>`**: `doctype`, `lang="es"`, codificación UTF-8, viewport, `theme-color`, título y enlace al CSS. Estos cinco metadatos son la lista mínima de calidad que revisa el equipo en cada cambio.
 2. **`header.topbar`**: marca del proyecto y dos datos de contexto: la insignia «Datos de demostración» y `#today-label`, que JavaScript rellena con la fecha local en formato peruano.
@@ -42,7 +42,7 @@ La separación no es decorativa: permite revisar estructura, presentación y ló
 
 Detalles de semántica que conviene saber explicar: cada campo vive dentro de su `label`, por lo que no hacen falta `for` sueltos; los bloques son `section` con `h2`/`h3` en orden; los estados ocultos usan la clase `.hidden` (`display:none`) y no atributos sueltos; y ningún significado depende solo del color, porque las insignias llevan texto («Aplica», «No aplica», «Sin revisión»).
 
-## 4. `styles.css` por bloques
+## 4. styles.css por bloques
 
 1. **`:root` con variables**: `--paper`, `--card`, `--ink`, `--muted`, `--line`, `--tan`, `--tan-soft`, `--sage`, `--yellow`, `--shadow`. Cambiar la paleta completa toca una sola línea.
 2. **Base**: `box-sizing` global, tipografías del sistema (sin fuentes externas) y el contenedor `.app` con borde y sombra dura que imita una ficha de papel.
@@ -55,7 +55,7 @@ Detalles de semántica que conviene saber explicar: cada campo vive dentro de su
 9. **Mensaje y toast**: `.message.show` y `.toast.show` controlan visibilidad con una sola clase que JavaScript agrega o quita.
 10. **Tres `@media`**: a 900 px la rejilla pasa a una columna y se quitan las rotaciones; a 600 px el layout se vuelve móvil puro (cabecera apilada, formulario a una columna, conteos en dos); a 370 px se ajustan marca y filas del recibo. Ningún ancho fijo produce scroll horizontal.
 
-## 5. `app.js` por bloques
+## 5. app.js por bloques
 
 Todo el archivo vive dentro de una función anónima autoejecutable con `'use strict'`: no deja variables globales y falla rápido si algo se usa mal.
 
@@ -154,7 +154,7 @@ Funciones de una línea que traducen el estado a respuestas de negocio:
 ## 8. Cómo se usa en el proyecto
 
 1. **Ejecución**: desde esta carpeta, `python -m http.server 4173` y abrir `http://localhost:4173`. El servidor solo entrega archivos; no es backend.
-2. **Demostración en clase**: el recorrido de siete pasos de `../Guia_Prototipado_y_MVP.md` (cargar perfil, visita, interacción, incidencia, «No aplica», «Aplica», conteos).
+2. **Demostración en clase**: el recorrido de siete pasos de `Guia_Prototipado_y_MVP.md` (cargar perfil, visita, interacción, incidencia, «No aplica», «Aplica», conteos).
 3. **Pruebas manuales antes de dar por listo un cambio**: caso válido, requerido vacío, dato ausente y ventana estrecha; más consola abierta sin errores.
 4. **Sustentación**: cada integrante debe poder explicar el flujo evento → `formSnapshot()` → validación → mutación de `db` → `save()` → render, y por qué la constancia solo existe con «Aplica».
 5. **Relación con el backlog**: este código cubre de forma demostrativa HU-01, HU-02, HU-03, HU-05, HU-07, HU-09 y HU-11 en su versión manual. No cubre HU-04, HU-06, HU-08, HU-10, HU-12 ni HU-13, que viven en el prototipo con navegación o siguen pendientes.

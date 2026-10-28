@@ -45,7 +45,7 @@ La facilitación de reuniones puede acordarse entre los cuatro Developers. Facil
 
 ### Product Backlog
 
-Lista priorizada del producto. La versión consolidada está en `backlog/Product_Backlog_Atlantic_City.md`; el PO mantiene la prioridad final. Las historias tienen criterios observables y decisiones pendientes identificables.
+Lista priorizada del producto. La versión consolidada está en `../backlog/Product_Backlog_Atlantic_City.md`; el PO mantiene la prioridad final. Las historias tienen criterios observables y decisiones pendientes identificables.
 
 ### Sprint Backlog
 
@@ -103,7 +103,7 @@ Después de revisar el producto, los cuatro Developers conversan sobre qué ayud
 ### Fuente de verdad
 
 - **Jira:** estado de historias/tareas, prioridad, responsable, revisor, bloqueo, evidencia y decisiones de Sprint.
-- **Carpeta del proyecto:** informe de avance en la raíz, más `backlog/`, `docs/`, `modelado/`, `prototipado/` y `desarrollo/`. Cada entregable tiene una única versión vigente; si se corrige algo, se corrige ahí y no en copias sueltas.
+- **Carpeta del proyecto:** `proyecto_final/` con `informe/`, `docs/` (todas las guías), `backlog/`, `modelado/`, `prototipado/` y `curso/`. Cada entregable tiene una única versión vigente; si se corrige algo, se corrige ahí y no en copias sueltas.
 - **Discord:** coordinación cotidiana; no es el único registro de decisiones.
 
 ### Registro de decisiones
