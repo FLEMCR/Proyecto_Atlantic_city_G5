@@ -18,18 +18,24 @@
   };
   const sampleData = () => ({
     clients: [
-      { code: 'AC-001', name: 'Cliente de prueba 01', spend: 'Por definir', games: 'Preferencia de prueba A', segment: 'Sin clasificar', createdAt: nowISO() },
-      { code: 'AC-002', name: 'Cliente de prueba 02', spend: 'Por definir', games: 'Preferencia de prueba B', segment: 'Sin clasificar', createdAt: nowISO() }
+      { code: 'AC-001', name: 'Cliente de prueba 01', spend: 'Por definir', games: 'Preferencia de prueba A', segment: 'Sin clasificar', creadoEn: nowISO() },
+      { code: 'AC-002', name: 'Cliente de prueba 02', spend: 'Por definir', games: 'Preferencia de prueba B', segment: 'Sin clasificar', creadoEn: nowISO() }
     ],
-    campaigns: [{ id: 'CAM-01', name: 'Campaña de prueba', createdAt: nowISO() }],
-    promotions: [{ id: 'PRO-01', name: 'Promoción de prueba', campaignId: 'CAM-01', createdAt: nowISO() }],
+    campaigns: [{ id: 'CAM-01', name: 'Campaña de prueba', creadoEn: nowISO() }],
+    promotions: [{ id: 'PRO-01', name: 'Promoción de prueba', identificadorDeCampana: 'CAM-01', creadoEn: nowISO() }],
     attentions: [
-      { id: 'ATT-DEMO-01', code: 'AC-001', kind: 'Visita', date: todayISO(), note: 'Registro de ejemplo', incident: false, incidentDescription: '', campaignId: '', promotionId: '', eligibility: '', createdAt: nowISO() },
-      { id: 'ATT-DEMO-02', code: 'AC-002', kind: 'Interacción', date: todayISO(), note: 'Registro de ejemplo', incident: false, incidentDescription: '', campaignId: '', promotionId: '', eligibility: '', createdAt: nowISO() }
+      { id: 'ATT-DEMO-01', code: 'AC-001', kind: 'Visita', date: todayISO(), note: 'Registro de ejemplo', incident: false, incidentDescription: '', identificadorDeCampana: '', promotionId: '', eligibility: '', creadoEn: nowISO() },
+      { id: 'ATT-DEMO-02', code: 'AC-002', kind: 'Interacción', date: todayISO(), note: 'Registro de ejemplo', incident: false, incidentDescription: '', identificadorDeCampana: '', promotionId: '', eligibility: '', creadoEn: nowISO() }
     ],
     communications: []
   });
+  function migrarCamposEstado(estado) {
+    const equiv = { createdAt: 'creadoEn', campaignId: 'identificadorDeCampana', eligibilityId: 'identificadorDeElegibilidad', localRecord: 'registroLocal' };
+    if (estado && typeof estado === 'object') for (const lista of Object.values(estado)) if (Array.isArray(lista)) for (const reg of lista) if (reg && typeof reg === 'object') for (const viejo in equiv) if (viejo in reg && !(equiv[viejo] in reg)) { reg[equiv[viejo]] = reg[viejo]; delete reg[viejo]; }
+    return estado;
+  }
   function normalizeState(parsed) {
+    parsed = migrarCamposEstado(parsed);
     return {
       clients: Array.isArray(parsed.clients) ? parsed.clients : [],
       campaigns: Array.isArray(parsed.campaigns) ? parsed.campaigns : [],
@@ -91,7 +97,7 @@
     $('#stat-communications').textContent = db.communications.length;
   }
   function renderRecent() {
-    const items = [...db.attentions].sort((a,b) => String(b.createdAt || b.date).localeCompare(String(a.createdAt || a.date))).slice(0,6);
+    const items = [...db.attentions].sort((a,b) => String(b.creadoEn || b.date).localeCompare(String(a.creadoEn || a.date))).slice(0,6);
     const wrap = $('#recent-list');
     if (!items.length) { wrap.innerHTML = '<div class="empty-state">Aún no hay atenciones guardadas.</div>'; return; }
     wrap.innerHTML = items.map((item) => {
@@ -106,7 +112,7 @@
     const code = $('#client-code').value.trim();
     const existing = byCode(code);
     const promotionId = $('#promotion-select').value;
-    const campaignId = $('#campaign-select').value;
+    const identificadorDeCampana = $('#campaign-select').value;
     return {
       code,
       name: $('#client-name').value.trim() || existing?.name || '',
@@ -118,7 +124,7 @@
       note: $('#activity-note').value.trim(),
       incident: $('#incident-toggle').checked,
       incidentDescription: $('#incident-description').value.trim(),
-      campaignId,
+      identificadorDeCampana,
       promotionId,
       eligibility: promotionId ? $('#eligibility-select').value : ''
     };
@@ -131,7 +137,7 @@
     $('#receipt-meta').textContent = isSaved ? 'Atención guardada en este navegador' : (code || data.name ? 'Vista previa · aún no guardada' : 'El resumen se actualiza al llenar el formulario.');
     $('#preview-client').textContent = code ? `${title} · ${code}` : '—';
     $('#preview-activity').textContent = (code || isSaved) && data.kind ? `${data.kind} · ${formatDate(data.date)}` : '—';
-    $('#preview-campaign').textContent = data.campaignId ? campaignName(data.campaignId) : 'Sin campaña';
+    $('#preview-campaign').textContent = data.identificadorDeCampana ? campaignName(data.identificadorDeCampana) : 'Sin campaña';
     $('#preview-promotion').textContent = data.promotionId ? promotionName(data.promotionId) : 'Sin promoción';
     $('#preview-result').textContent = data.promotionId ? eligibilityName(data.eligibility) : 'Sin revisión';
     $('#preview-incident').textContent = data.incident ? `Sí · ${data.incidentDescription || 'descripción pendiente'}` : 'No registrada';
@@ -151,7 +157,7 @@
   }
   function renderPreview() {
     const draft = formSnapshot();
-    const hasDraft = Boolean(draft.code || draft.name || draft.note || draft.campaignId || draft.promotionId || draft.incident);
+    const hasDraft = Boolean(draft.code || draft.name || draft.note || draft.identificadorDeCampana || draft.promotionId || draft.incident);
     if (hasDraft || !lastAttention) showReceipt(draft, null, false);
     else showReceipt(lastAttention, lastAttention.id, true);
     renderCriteria();
@@ -202,18 +208,18 @@
       spend: draft.spend,
       games: draft.games,
       segment: draft.segment,
-      createdAt: existing?.createdAt || nowISO()
+      creadoEn: existing?.creadoEn || nowISO()
     };
     if (existing) Object.assign(existing, client); else db.clients.push(client);
     const attention = {
       ...draft,
       code: client.code,
       id: makeId('ATN'),
-      createdAt: nowISO()
+      creadoEn: nowISO()
     };
     db.attentions.push(attention);
     if (draft.promotionId && draft.eligibility === 'aplica') {
-      db.communications.push({ id: makeId('COM'), attentionId: attention.id, code: client.code, promotionId: draft.promotionId, date: draft.date, localRecord: true });
+      db.communications.push({ id: makeId('COM'), attentionId: attention.id, code: client.code, promotionId: draft.promotionId, date: draft.date, registroLocal: true });
     }
     const persisted = save();
     lastAttention = attention;
@@ -242,7 +248,7 @@
   $('#client-code').addEventListener('blur', tryLoadProfile);
   $('#promotion-select').addEventListener('change', () => {
     const selected = promotionFor($('#promotion-select').value);
-    if (selected?.campaignId && !$('#campaign-select').value) $('#campaign-select').value = selected.campaignId;
+    if (selected?.identificadorDeCampana && !$('#campaign-select').value) $('#campaign-select').value = selected.identificadorDeCampana;
     updateEligibilityControl(); lastAttention = null; renderPreview();
   });
   $('#campaign-select').addEventListener('change', () => { lastAttention = null; renderPreview(); });

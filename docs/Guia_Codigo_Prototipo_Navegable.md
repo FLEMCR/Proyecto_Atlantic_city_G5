@@ -56,7 +56,7 @@ IIFE con `'use strict'`, igual que el MVP.
 
 - `STORE_KEY = 'atlanticCityMvp_v3'` y `LEGACY_KEY = 'atlanticCityMvp_v2'`: la clave actual y la anterior.
 - `sampleData()`: tres perfiles, dos actividades, una campaña y una promoción de demostración; incidencias, revisiones y constancias vacías.
-- `normalizeState(parsed)`: además de asegurar arreglos, **migra datos de la versión anterior**: en `v2` la campaña era un texto libre dentro de la promoción; si no hay campañas pero hay promociones con ese texto, se crean campañas reales con id propio y se reescribe `campaignId`. Es un ejemplo de migración de esquema en almacenamiento local.
+- `normalizeState(parsed)`: además de asegurar arreglos, **migra datos de la versión anterior**: en `v2` la campaña era un texto libre dentro de la promoción; si no hay campañas pero hay promociones con ese texto, se crean campañas reales con id propio y se reescribe `identificadorDeCampana`. Es un ejemplo de migración de esquema en almacenamiento local.
 - `loadState()` prueba primero la clave actual y luego la heredada; `save()` con `try/catch` y toast de error.
 - `toast(message)` con temporizador único.
 - Consultas derivadas: `clientByCode`, `clientName`, `activityCountFor`, `visitsFor` (solo tipo Visita), `communicationsFor`, `classification` (etiqueta manual o «Sin clasificar»), `promotionName`, `campaignName`.
@@ -86,7 +86,7 @@ Cuatro líneas que resumen el punto 10 de la estructura: ocultar todas las vista
 - `renderVisits()`: rellena el select de cliente, filtra por búsqueda sobre nombre, nota y tipo, y pinta la tabla ordenada por fecha.
 - `renderIncidents()`: tabla con cliente vinculado o «Sin perfil vinculado», descripción, seguimiento y botón `data-followup`.
 - `renderSegments()` y `updateSegmentPreview(code)`: tabla de los cuatro criterios por perfil y, al elegir un cliente, panel con los valores concretos y su etiqueta manual precargada en `#segment-label`.
-- `renderMarketing()`: selects de vinculación y tres tablas; en la de revisiones se busca si existe una constancia con `eligibilityId` igual al id de la revisión para pintar «Constancia local» o «Sin comunicación».
+- `renderMarketing()`: selects de vinculación y tres tablas; en la de revisiones se busca si existe una constancia con `identificadorDeElegibilidad` igual al id de la revisión para pintar «Constancia local» o «Sin comunicación».
 - `renderReports()`: conteos, agrupación por clasificación con `Map`, barras proporcionales (`width` en porcentaje con mínimo 7 % para que ninguna desaparezca), línea de tiempo y tabla de tipos de registro con su observación.
 - `renderAll()`: llama a los siete renders. Es caro pero simple y correcto para un prototipo de datos pequeños; si el volumen creciera, el siguiente paso sería repintar solo la vista activa.
 
@@ -100,7 +100,7 @@ Cuatro líneas que resumen el punto 10 de la estructura: ocultar todas las vista
 - Submit de `#incident-form`: agrega la incidencia con o sin perfil vinculado; el select lo permite porque el caso real puede llegar sin perfil identificado.
 - Segmentación: `change` del select actualiza la vista previa; submit guarda la etiqueta manual recortada.
 - Campañas y promociones: submits independientes que registran cada entidad con sus campos; el toast de campaña recuerda que no se marca como aprobada ni publicada.
-- Elegibilidad: valida promoción, cliente y resultado dentro de `['aplica','no-aplica']`; crea la revisión y, solo con «aplica», la constancia con `eligibilityId` y `localRecord: true`; los mensajes distinguen ambos resultados y niegan el envío de mensajes.
+- Elegibilidad: valida promoción, cliente y resultado dentro de `['aplica','no-aplica']`; crea la revisión y, solo con «aplica», la constancia con `identificadorDeElegibilidad` y `registroLocal: true`; los mensajes distinguen ambos resultados y niegan el envío de mensajes.
 - `#export-report` → `exportCSV()`; fecha de cabecera y `renderAll()` de arranque.
 
 ### 5.5 Exportación CSV (líneas 235 a 247)
@@ -115,7 +115,7 @@ Cuatro líneas que resumen el punto 10 de la estructura: ocultar todas las vista
 
 | Regla | Dónde vive | Efecto visible |
 |---|---|---|
-| Campaña ≠ promoción | Colecciones y formularios separados, vínculo opcional `campaignId` | Se puede registrar una promoción sin campaña y vincularla después |
+| Campaña ≠ promoción | Colecciones y formularios separados, vínculo opcional `identificadorDeCampana` | Se puede registrar una promoción sin campaña y vincularla después |
 | La visita se conserva sin incidencia ni promoción | `#visit-form` no consulta incidencias ni promociones | Registrar actividad nunca pide datos de marketing |
 | Incidencia opcional y sin perfil posible | `#incident-client` con opción vacía | Una incidencia puede quedar «Sin perfil vinculado» |
 | Clasificación manual | `#segment-label` se guarda tal cual; no hay fórmula | La tabla de segmentación muestra la etiqueta escrita |

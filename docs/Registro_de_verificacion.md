@@ -62,6 +62,11 @@ Resultado de las comprobaciones realizadas sobre los archivos del proyecto despu
 | Marcas de formato sin procesar en los Word | Ninguna |
 | Notas internas, comentarios de proceso o contenido de otros casos en los entregables | No se encontraron |
 | Diagramas UML | Cinco imágenes generadas y revisadas visualmente; coinciden con el backlog, el modelo BPMN y el código |
+| Diagramas de casos de uso y clases recibidos del equipo | Revisados contra el backlog y la especificación: se corrigieron alcances inventados, typos, relaciones sin estereotipo y clases fuera del alcance; las versiones corregidas reemplazaron a las anteriores en `modelado/diagramas/`, en las figuras 5 y 9 del Word y en las diapositivas 8 y 14 del PPT; por acuerdo del equipo el diagrama de casos de uso no dibuja relaciones include o extend entre óvalos |
+| Modelo editable de StarUML | `../modelado/Atlantic_City_UML.mdj` con cinco diagramas (casos de uso, clases y tres secuencias); 906 identificadores internos y 1766 referencias, ninguna rota; regenerado con el esquema de contención oficial de StarUML para que los diagramas abran ya ubicados, con el de casos de uso como diagrama inicial |
+| Guía de diagramas de secuencia | `../docs/Guia_Diagramas_de_Secuencia_Atlantic_City.md`: lifelines, lectura mensaje por mensaje de las tres secuencias, fragmentos alt, StarUML clic a clic, errores frecuentes y lista de verificación |
+| Documento de casos de uso recibido, versión del equipo | `../modelado/Casos_de_Uso_Atlantic_City_version_del_equipo.docx`: misma estructura del original con alcance corregido, secuencia de eventos CU01 con la plantilla del profesor y cinco figuras incrustadas |
+| Guía de correcciones UML | `../docs/Guia_Correcciones_UML_Atlantic_City.md`: criterio de corrección, tabla elemento original contra decisión del equipo, lectura del proceso casos de uso, secuencia y clases, y comprobación propia en cinco minutos |
 
 ## 4. Prueba de ejecución
 
@@ -78,5 +83,7 @@ Recorridos previstos para la prueba manual, descritos en `Guia_Prototipado_y_MVP
 - Los conteos del MVP y del prototipo corresponden a datos de demostración almacenados en el navegador; no son indicadores del negocio.
 - El trabajo se limita a la capa de vista. El lenguaje de servidor y el motor de base de datos no están definidos por el sílabo ni por la estructura de entrega para esta etapa; por eso el objeto «Datos» de los diagramas de secuencia se nombra «registro local».
 - Los wireframes representan la pantalla de Inicio/Dashboard y no el alcance del MVP sencillo, aunque anticipan la organización del prototipo con navegación.
+- Nombres de campos del código en español: `creadoEn`, `identificadorDeCampana`, `identificadorDeElegibilidad` y `registroLocal` en el MVP, el prototipo con navegación y el archivo único; los datos locales guardados con los nombres anteriores se migran al abrir; diagrama de clases, `.mdj`, Word del equipo e informe sincronizados con los mismos nombres.
+- Wireframes regenerados por acuerdo del equipo: el manual como boceto a lápiz en blanco y negro y el digital en blanco y negro con línea limpia; las figuras 3 y 4 del Word apuntan a esos archivos del equipo y no a los JPEG recibidos.
 - Las reglas de segmentación, elegibilidad, campañas, reportes y automatización continúan pendientes de definición del Product Owner; los diagramas UML no las incluyen.
 - En el informe de avance faltan los nombres de los cuatro integrantes, el nombre del docente y la carrera; están marcados entre corchetes en la portada y en la tabla del equipo Scrum para completarlos a mano antes de entregar.

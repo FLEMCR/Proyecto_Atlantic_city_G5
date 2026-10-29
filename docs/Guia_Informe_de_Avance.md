@@ -51,8 +51,8 @@ Nada más queda pendiente: el resto del documento está completo y verificado.
 | Logotipo de portada | `../curso/Atlantic_City_logo.webp` |
 | Figura 1, diagrama principal BPMN | `../modelado/Atlantic_city_grupo_cinco.png` |
 | Figura 2, subproceso de segmentación | `../modelado/SUBPROCESO.png` |
-| Figura 3, wireframe manual | `../../uploads/Wireframe_manual.jpeg` |
-| Figura 4, wireframe digital | `../../uploads/Wireframe_digital.jpeg` |
+| Figura 3, wireframe manual | `../prototipado/wireframe_manual.png`, boceto del equipo en blanco y negro |
+| Figura 4, wireframe digital | `../prototipado/wireframe_digital.png`, versión digital del equipo en blanco y negro |
 | Figura 5, casos de uso | `../modelado/diagramas/Casos_de_uso.png` |
 | Figuras 6 a 8, secuencias | `../modelado/diagramas/Secuencia_registrar_cliente.png`, `../modelado/diagramas/Secuencia_registrar_visita.png`, `../modelado/diagramas/Secuencia_evaluar_promocion.png` |
 | Figura 9, clases | `../modelado/diagramas/Clases.png` |

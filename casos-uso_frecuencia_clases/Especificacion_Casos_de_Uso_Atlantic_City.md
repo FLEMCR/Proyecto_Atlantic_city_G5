@@ -190,7 +190,7 @@ El diagrama de actores coincide con el recuadro de actores del diagrama general 
 |---|---|
 | Descripción | Permite al empleado de Marketing revisar, para un cliente y una promoción registrada, si la oferta aplica según los cuatro criterios y la decisión manual, dejando constancia local del resultado sin enviar comunicaciones externas. |
 | Actores | Empleado de Marketing (ejecutor); Empleado de Servicio al Cliente / Operaciones (puede ejecutarla dentro del recorrido de atención del MVP). |
-| Casos de uso asociados | Incluye consultar los criterios de segmentación (HU-07, relación «include» del diagrama). Relacionado con campaña (HU-10) y constancia local (HU-11). |
+| Casos de uso asociados | Incluye como paso del flujo la consulta de los criterios de segmentación (HU-07). Relacionado con campaña (HU-10) y constancia local (HU-11). |
 | Prioridad | Alta |
 | Precondiciones | El perfil existe y hay una promoción registrada, con su campaña vinculada si corresponde. El empleado está usando el sistema. |
 | Postcondiciones | La evaluación queda en el historial de promociones del cliente. Con «Aplica» se crea una constancia local; con «No aplica» no se crea comunicación. |

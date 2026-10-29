@@ -20,7 +20,7 @@ Tres ideas que conviene tener claras antes de explicar cualquiera de las piezas:
 
 ## 2. Wireframe manual: `../prototipado/wireframe_manual.png`
 
-Es el boceto manual de la pantalla de Inicio/Dashboard. Organiza visualmente navegación, indicadores, actividad reciente, criterios de segmentación, perfiles y registros de marketing. Se usa para revisar estructura y jerarquía antes de construir una interfaz más completa.
+Es el boceto manual de la pantalla de Inicio/Dashboard, dibujado en blanco y negro con trazo de lápiz: líneas tembladas e imperfectas, como corresponda a un boceto de cuaderno, porque lo que se revisa aquí es la estructura y no el acabado. Organiza visualmente navegación, indicadores, actividad reciente, criterios de segmentación, perfiles y registros de marketing. Se usa para revisar estructura y jerarquía antes de construir una interfaz más completa.
 
 ### Cómo leerlo
 
@@ -38,7 +38,7 @@ Es la versión digital de la misma pantalla y contiene las mismas áreas que el 
 
 ### Por qué se entregan ambas versiones
 
-El boceto manual facilita conversar sobre estructura; el digital ayuda a revisar la distribución con más precisión. Compararlas permite validar la organización antes de construir la interfaz. En ambos casos, etiquetas y texto acompañan al color para que el significado no dependa solo de la paleta.
+El boceto manual facilita conversar sobre estructura; el digital ayuda a revisar la distribución con más precisión. Compararlas permite validar la organización antes de construir la interfaz. Ambas versiones son estrictamente en blanco y negro: ningún wireframe lleva color, para que el significado viva en la estructura y en las etiquetas y no en la paleta. El digital usa líneas rectas y limpias con la misma escala de grises, y no agrega funciones por ser digital.
 
 ### Cómo explicar un wireframe en la presentación
 

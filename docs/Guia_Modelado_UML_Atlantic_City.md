@@ -23,7 +23,7 @@ Estos diagramas complementan al modelo BPMN de `../modelado/Atlantic_city_grupo_
 
 - El rectángulo grande es el límite del sistema; todo lo que está dentro es funcionalidad del producto.
 - Los monigotes son los actores. Las líneas simples indican qué casos usa cada actor.
-- La flecha punteada con «include» entre HU-09 y HU-07 significa que evaluar una promoción siempre incluye consultar los criterios de segmentación.
+- Evaluar una promoción siempre consulta los criterios de segmentación: esa dependencia se documenta como paso incluido del flujo de CU03 y como mensajes 3 a 5 de su secuencia; por acuerdo del equipo, el diagrama de casos de uso no dibuja flechas entre óvalos.
 - HU-13 fuera del límite recuerda que la automatización no forma parte del alcance actual.
 
 Pregunta típica y respuesta del equipo: **¿por qué el Cliente aparece como actor si no usa el sistema?** Porque el caso de negocio lo incluye: solicita la atención y recibe la oferta. Quien opera el sistema es el personal autorizado.
@@ -65,8 +65,8 @@ Cada actualización se vuelve a dibujar con las mismas reglas y se verifica que 
 
 Los diagramas de esta carpeta se revisaron contra las pautas entregadas por el profesor en el material complementario (`../curso/material_complementario/`):
 
-- Casos de uso: nombres iniciados en verbo, actores principales a la izquierda, caso incluido a la derecha del que lo invoca, `<<include>>` y `<<extend>>` con flecha discontinua y asociación actor–caso sin flecha. El diagrama cumple estas pautas; HU-13 permanece fuera del rectángulo del sistema hasta que el Product Owner la priorice.
+- Casos de uso: nombres iniciados en verbo, actores principales a la izquierda, asociación actor–caso sin flecha y cero flechas entre óvalos por acuerdo del equipo: las dependencias entre casos se documentan como pasos incluidos del flujo y en las secuencias. El diagrama cumple estas pautas; HU-13 permanece fuera del rectángulo del sistema hasta que el Product Owner la priorice.
 - Secuencia: lifelines de actor, interfaz, sistema y datos, con fragmentos `alt` para las alternativas; coincide con la documentación de secuencia de eventos que el profesor muestra como previa al diagrama. Esa documentación por caso vive ahora en `../modelado/casos_de_uso/Especificacion_Casos_de_Uso_Atlantic_City.md`.
 - Clases: tres zonas por clase y multiplicidades en las asociaciones. Al pasar el diagrama a StarUML, el equipo añade la visibilidad (`+`) en los atributos que las vistas leen y escriben y las operaciones que el código realmente ejecuta, según se detalla en `Guia_Casos_de_Uso_Atlantic_City.md`.
 
-El equipo trabaja los diagramas UML en StarUML. Los pasos para reproducir y verificar cada uno (casos de uso, secuencia y clases), incluido el guardado del archivo `.mdj` y la exportación de imágenes, están en la sección 7 de `Guia_Casos_de_Uso_Atlantic_City.md`. Mientras el modelo de StarUML y las imágenes de esta carpeta coexisten, cualquier cambio se exporta de nuevo y se reemplaza en ambos lados y en el informe.
+El equipo trabaja los diagramas UML en StarUML. Los pasos para reproducir y verificar cada uno (casos de uso, secuencia y clases), incluido el guardado del archivo `.mdj` y la exportación de imágenes, están en la sección 7 de `Guia_Casos_de_Uso_Atlantic_City.md`. Mientras el modelo de StarUML y las imágenes de esta carpeta coexisten, cualquier cambio se exporta de nuevo y se reemplaza en ambos lados y en el informe. El detalle de las secuencias, mensaje por mensaje y con los clics de StarUML, está en `Guia_Diagramas_de_Secuencia_Atlantic_City.md`.

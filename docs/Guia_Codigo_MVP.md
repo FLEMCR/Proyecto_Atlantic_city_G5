@@ -64,7 +64,7 @@ Todo el archivo vive dentro de una función anónima autoejecutable con `'use st
 | Función | Qué hace | Por qué existe |
 |---|---|---|
 | `$(selector)` y `$$(selector)` | Atajos de `querySelector` y `querySelectorAll` con resultado como arreglo. | Menos ruido en el código de eventos y render. |
-| `nowISO()` | Fecha y hora actual en ISO. | Marcar `createdAt` de registros. |
+| `nowISO()` | Fecha y hora actual en ISO. | Marcar `creadoEn` de registros. |
 | `todayISO()` | Fecha local en `AAAA-MM-DD` sin desfase de zona horaria. | Valor inicial de los campos de fecha y fecha por defecto de una atención. |
 | `makeId(prefix)` | Identificador corto con base 36 y azar, por ejemplo `ATN-lx2…-a9f`. | Ids legibles en el historial sin necesitar base de datos. |
 | `escapeHtml(value)` | Reemplaza `& < > " '` por entidades. | Todo texto que se inserta con `innerHTML` pasa por aquí: evita que un nombre con `<script>` se ejecute. |
@@ -97,7 +97,7 @@ Funciones de una línea que traducen el estado a respuestas de negocio:
 - `fillSelect(select, items, placeholder)`: reconstruye un `select` con opciones escapadas y **conserva la selección previa** si el id sigue existiendo. Es el patrón que evita perder lo elegido al repintar.
 - `renderCriteria()`: actualiza los dos contadores del paso 1 según el identificador escrito.
 - `renderStats()`: vuelca los cuatro conteos del pie.
-- `renderRecent()`: ordena las atenciones por `createdAt` descendente, toma seis y pinta `.record-item` con insignia de resultado; si no hay nada, un `.empty-state` explicativo.
+- `renderRecent()`: ordena las atenciones por `creadoEn` descendente, toma seis y pinta `.record-item` con insignia de resultado; si no hay nada, un `.empty-state` explicativo.
 - `showReceipt(data, id, isSaved)`: el corazón visual. Rellena el comprobante con los datos que haya (borrador o atención guardada), decide el texto de `#receipt-meta` («BORRADOR», «vista previa» o «guardada») y elige la nota final según promoción y resultado: sin promoción, «la atención se guarda aunque no se seleccione una promoción»; con promoción y sin resultado, pide el resultado manual; «no-aplica» aclara que no habrá comunicación; «aplica» aclara que será constancia local sin mensaje.
 - `renderPreview()`: decide qué mostrar: si el formulario tiene borrador o no hay última atención, muestra el borrador; si no, vuelve al comprobante de la última atención guardada. Luego llama a `renderCriteria()`.
 - `updateEligibilityControl()`: si no hay promoción elegida, deshabilita `#eligibility-select`, resetea su valor y cambia el texto de la primera opción a «Selecciona una promoción primero».
@@ -111,9 +111,9 @@ Funciones de una línea que traducen el estado a respuestas de negocio:
   1. `preventDefault()` y limpieza de mensajes.
   2. `formSnapshot()`: fotografía del formulario en un objeto plano (código, nombre, gasto, preferencias, clasificación, tipo, fecha, nota, incidencia, descripción, campaña, promoción, elegibilidad). Los valores vacíos se completan con los del perfil existente para no borrar datos al registrar una atención.
   3. Tres validaciones con mensaje y foco: identificador y nombre obligatorios; descripción de incidencia obligatoria si el checkbox está activo; resultado de elegibilidad obligatorio si hay promoción.
-  4. Alta o actualización del perfil: si existe se usa `Object.assign` sobre el mismo objeto (no se duplica); si no, se agrega con `createdAt` nuevo.
+  4. Alta o actualización del perfil: si existe se usa `Object.assign` sobre el mismo objeto (no se duplica); si no, se agrega con `creadoEn` nuevo.
   5. Se crea la atención con `makeId('ATN')` y se agrega a `db.attentions`. **Siempre**, haya o no incidencia y haya o no promoción.
-  6. Solo si hay promoción y el resultado es «aplica», se crea una constancia en `db.communications` con `localRecord: true`.
+  6. Solo si hay promoción y el resultado es «aplica», se crea una constancia en `db.communications` con `registroLocal: true`.
   7. `save()`; se guarda `lastAttention`; se resetea el formulario; se repinta todo; y el mensaje final distingue los tres casos (constancia creada, revisión sin comunicación, atención simple), añadiendo «Solo estará disponible durante esta sesión» si la persistencia falló. `toast()` refuerza el aviso.
 
 ### 5.6 Arranque y listeners (líneas 233 a 258)
@@ -133,10 +133,10 @@ Funciones de una línea que traducen el estado a respuestas de negocio:
 |---|---|---|
 | La visita o interacción se conserva aunque no haya incidencia ni promoción | `submitAttention` agrega la atención antes y fuera de cualquier condición | Registrar una atención sin tocar incidencia ni promoción funciona y aparece en el historial |
 | «No aplica» no crea comunicación | El `if` de constancias exige `eligibility === 'aplica'` | Tras guardar «No aplica», el contador de constancias no cambia y la nota del recibo lo explica |
-| «Aplica» crea solo una constancia local | `db.communications.push({... localRecord: true})` y el mensaje «no se envió un mensaje» | El toast y el mensaje lo dicen explícitamente |
+| «Aplica» crea solo una constancia local | `db.communications.push({... registroLocal: true})` y el mensaje «no se envió un mensaje» | El toast y el mensaje lo dicen explícitamente |
 | La frecuencia cuenta solo visitas | `visitsFor` filtra `kind === 'Visita'` | Registrar una interacción no mueve el contador de frecuencia |
 | Clasificación y elegibilidad manuales | No existe función de cálculo; los campos son de texto o select manual | Ninguna pantalla inventa un segmento |
-| Campaña y promoción son entidades distintas | Colecciones separadas y selects separados, con vínculo opcional `campaignId` | Se pueden registrar por separado y relacionarlas después |
+| Campaña y promoción son entidades distintas | Colecciones separadas y selects separados, con vínculo opcional `identificadorDeCampana` | Se pueden registrar por separado y relacionarlas después |
 | Datos de demostración identificados | `sampleData()` más la insignia del HTML y el pie | La pantalla declara su carácter ficticio |
 
 ## 7. Validaciones y mensajes

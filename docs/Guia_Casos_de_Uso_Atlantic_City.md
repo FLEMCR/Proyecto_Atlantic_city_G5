@@ -96,7 +96,7 @@ Regla del equipo: un cambio en cualquiera de las cinco vistas obliga a revisar l
 3. Añadir el **Subject** (rectángulo del sistema) y nombrarlo «Sistema de Gestión de Clientes Atlantic City»; los casos de uso van dentro.
 4. Añadir un **Use Case** por cada caso del alcance con nombre iniciado en verbo y colocarlo en orden lógico de recorrido, de arriba hacia abajo.
 5. Unir actor y caso con **Association** (línea sin flecha).
-6. Para HU-09 → HU-07 usar **Include**: flecha discontinua con la etiqueta `<<include>>` apuntando al caso incluido, colocado a la derecha del que lo invoca.
+6. No dibujar flechas entre óvalos: la dependencia de HU-09 sobre HU-07 se documenta como paso incluido del flujo de CU03 y como mensajes 3 a 5 de su secuencia. Si el Product Owner pidiera alguna vez una dependencia entre casos, se usa **Include**: flecha discontinua con la etiqueta `<<include>>` apuntando al caso incluido.
 7. HU-13 queda fuera del rectángulo del sistema, asociada al Product Owner, hasta que el PO la priorice.
 8. Exportar la imagen y reemplazarla en el informe y en `../modelado/diagramas/Casos_de_uso.png` para que ambas versiones coincidan.
 
@@ -105,7 +105,7 @@ Lista de comprobación del diagrama, tomada de las pautas del curso:
 - Actores con nombre de rol y actores principales a la izquierda.
 - Nombres de caso con verbo inicial y descriptivos («Registrar visita o interacción», no «Registrar»).
 - Casos incluidos a la derecha del invocador; herederos debajo del principal.
-- `<<include>>` y `<<extend>>` con flecha discontinua; la de `extend` apunta al caso base.
+- Los diagramas del equipo no dibujan `<<include>>` ni `<<extend>>` entre óvalos: las dependencias del flujo se documentan como pasos incluidos en la especificación y como mensajes de la secuencia. Si el Product Owner pidiera alguna vez una dependencia entre casos, se dibuja con flecha discontinua y estereotipo, y la de `extend` apunta al caso base.
 - Asociación actor–caso sin flecha.
 - Sin cruces de líneas evitables y sin casos huérfanos sin actor.
 
@@ -129,7 +129,7 @@ Lista de comprobación del diagrama, tomada de las pautas del curso:
 
 ### 7.4 Guardado y versiones del modelo
 
-- Guardar el archivo `.mdj` de StarUML dentro de `../` (carpeta modelado) con nombre el archivo Atlantic_City_UML.mdj dentro de `../modelado/` la primera vez que el equipo lo cree, y mencionarlo en el README de modelado.
+- El archivo `.mdj` del equipo ya existe en `../modelado/Atlantic_City_UML.mdj` con los cinco diagramas; al editarlo en StarUML se guarda de nuevo en esa ruta y las imágenes modificadas se exportan a `diagramas/` reemplazando la versión anterior.
 - Antes de cada entrega, exportar de nuevo los PNG y compararlos con los incrustados en el informe.
 - Si el profesor pide intercambio con otra herramienta, StarUML exporta a XMI; ese archivo, y no capturas sueltas, es el que se comparte.
 
@@ -140,7 +140,7 @@ Lista de comprobación del diagrama, tomada de las pautas del curso:
 3. **Mensajes que no existen**: todo MSJ debe poder provocarse en el navegador; si no, se corrige el catálogo o el código.
 4. **Duplicar reglas dentro de cada caso**: las reglas viven una sola vez en el catálogo RN y se referencian.
 5. **Actualizar el informe sin actualizar la especificación o el diagrama**: la regla de las cinco vistas lo prohíbe.
-6. **Dibujar en StarUML sin las pautas**: actores a la izquierda, verbos al inicio, include a la derecha; un diagrama correcto pero desordenado resta claridad en la sustentación.
+6. **Dibujar en StarUML sin las pautas**: actores a la izquierda, verbos al inicio y los casos de cada actor agrupados en columnas; un diagrama correcto pero desordenado resta claridad en la sustentación.
 7. **Tratar HU-13 como incluida**: sigue fuera del rectángulo del sistema hasta que el Product Owner la priorice.
 
 ## 9. Reutilización en otros proyectos

@@ -195,27 +195,33 @@
   };
 
   const sampleData = () => {
-    const campaignId = makeId('CAM');
+    const identificadorDeCampana = makeId('CAM');
     const promotionId = makeId('PRO');
     return {
       clients: [
-        { code: 'AC-001', name: 'Cliente de prueba 01', spend: 'Por definir', games: 'Preferencia de prueba A', segment: 'Sin clasificar', createdAt: nowISO() },
-        { code: 'AC-002', name: 'Cliente de prueba 02', spend: 'Por definir', games: 'Preferencia de prueba B', segment: 'Sin clasificar', createdAt: nowISO() },
-        { code: 'AC-003', name: 'Cliente de prueba 03', spend: 'Por definir', games: 'Por definir', segment: '', createdAt: nowISO() }
+        { code: 'AC-001', name: 'Cliente de prueba 01', spend: 'Por definir', games: 'Preferencia de prueba A', segment: 'Sin clasificar', creadoEn: nowISO() },
+        { code: 'AC-002', name: 'Cliente de prueba 02', spend: 'Por definir', games: 'Preferencia de prueba B', segment: 'Sin clasificar', creadoEn: nowISO() },
+        { code: 'AC-003', name: 'Cliente de prueba 03', spend: 'Por definir', games: 'Por definir', segment: '', creadoEn: nowISO() }
       ],
       visits: [
         { id: makeId('VIS'), code: 'AC-001', kind: 'Visita', date: todayISO(), note: 'Registro de ejemplo' },
         { id: makeId('VIS'), code: 'AC-002', kind: 'Interacción', date: todayISO(), note: 'Registro de ejemplo' }
       ],
       incidents: [],
-      campaigns: [{ id: campaignId, name: 'Campaña de prueba', objective: 'Por definir', audience: 'Criterios por confirmar', period: 'Por definir', createdAt: nowISO() }],
-      promotions: [{ id: promotionId, name: 'Promoción de prueba', campaignId, criteria: 'Criterios por confirmar', description: 'Registro de ejemplo', createdAt: nowISO() }],
+      campaigns: [{ id: identificadorDeCampana, name: 'Campaña de prueba', objective: 'Por definir', audience: 'Criterios por confirmar', period: 'Por definir', creadoEn: nowISO() }],
+      promotions: [{ id: promotionId, name: 'Promoción de prueba', identificadorDeCampana, criteria: 'Criterios por confirmar', description: 'Registro de ejemplo', creadoEn: nowISO() }],
       eligibilityChecks: [],
       communications: []
     };
   };
 
+  function migrarCamposEstado(estado) {
+    const equiv = { createdAt: 'creadoEn', campaignId: 'identificadorDeCampana', eligibilityId: 'identificadorDeElegibilidad', localRecord: 'registroLocal' };
+    if (estado && typeof estado === 'object') for (const lista of Object.values(estado)) if (Array.isArray(lista)) for (const reg of lista) if (reg && typeof reg === 'object') for (const viejo in equiv) if (viejo in reg && !(equiv[viejo] in reg)) { reg[equiv[viejo]] = reg[viejo]; delete reg[viejo]; }
+    return estado;
+  }
   function normalizeState(parsed) {
+    parsed = migrarCamposEstado(parsed);
     const campaigns = Array.isArray(parsed.campaigns) ? parsed.campaigns : [];
     const promotions = Array.isArray(parsed.promotions) ? parsed.promotions : [];
     let normalizedCampaigns = campaigns;
@@ -224,8 +230,8 @@
     if (!campaigns.length) {
       const oldNames = [...new Set(promotions.map((p) => String(p.campaign || '').trim()).filter(Boolean))];
       const ids = new Map(oldNames.map((name) => [name, makeId('CAM')]));
-      normalizedCampaigns = oldNames.map((name) => ({ id: ids.get(name), name, objective: '', audience: 'Por confirmar', period: '', createdAt: nowISO() }));
-      normalizedPromotions = promotions.map((p) => ({ ...p, campaignId: p.campaignId || ids.get(String(p.campaign || '').trim()) || '' }));
+      normalizedCampaigns = oldNames.map((name) => ({ id: ids.get(name), name, objective: '', audience: 'Por confirmar', period: '', creadoEn: nowISO() }));
+      normalizedPromotions = promotions.map((p) => ({ ...p, identificadorDeCampana: p.identificadorDeCampana || ids.get(String(p.campaign || '').trim()) || '' }));
     }
     return {
       clients: Array.isArray(parsed.clients) ? parsed.clients : [],
@@ -302,8 +308,8 @@
   }
   function marketingRecords(limit = 3) {
     const items = [
-      ...db.campaigns.map((c) => ({ type: 'Campaña', name: c.name, detail: c.objective || c.audience || 'Objetivo por confirmar', date: c.createdAt, color: 'chip-purple' })),
-      ...db.promotions.map((p) => ({ type: 'Promoción', name: p.name, detail: p.campaignId ? campaignName(p.campaignId) : (p.criteria || 'Sin campaña vinculada'), date: p.createdAt, color: 'chip-teal' }))
+      ...db.campaigns.map((c) => ({ type: 'Campaña', name: c.name, detail: c.objective || c.audience || 'Objetivo por confirmar', date: c.creadoEn, color: 'chip-purple' })),
+      ...db.promotions.map((p) => ({ type: 'Promoción', name: p.name, detail: p.identificadorDeCampana ? campaignName(p.identificadorDeCampana) : (p.criteria || 'Sin campaña vinculada'), date: p.creadoEn, color: 'chip-teal' }))
     ];
     return items.sort((a,b) => String(b.date).localeCompare(String(a.date))).slice(0, limit);
   }
@@ -312,7 +318,7 @@
     $('#stat-visits').textContent = db.visits.length;
     $('#stat-incidents').textContent = db.incidents.length;
     $('#stat-promos').textContent = db.promotions.length;
-    const recent = [...db.clients].sort((a,b) => String(b.createdAt).localeCompare(String(a.createdAt))).slice(0,5);
+    const recent = [...db.clients].sort((a,b) => String(b.creadoEn).localeCompare(String(a.creadoEn))).slice(0,5);
     $('#home-client-rows').innerHTML = recent.length ? recent.map((c) => `<tr><td><span class="cell-primary">${escapeHtml(c.code)}</span></td><td><span class="cell-primary">${escapeHtml(c.name)}</span></td><td>${activityCountFor(c.code)}</td><td><span class="chip chip-blue">${escapeHtml(classification(c))}</span></td><td>${escapeHtml(c.games || 'No disponible')}</td></tr>`).join('') : emptyRow(5, 'No hay perfiles registrados.');
     const homeActivities = recentActivity(db.incidents.length ? 5 : 4);
     if (!db.incidents.length) homeActivities.push({ date: '', title: 'Sin incidencias registradas', detail: 'No hay casos en los datos locales.', icon: '!' });
@@ -369,13 +375,13 @@
     fillCampaignSelect($('#promotion-campaign'), 'Sin campaña vinculada');
     fillPromotionSelect($('#eligibility-promotion'), 'Selecciona una promoción');
     fillClientSelect($('#eligibility-client'), 'Selecciona un cliente', $('#eligibility-client')?.value);
-    const campaigns = [...db.campaigns].sort((a,b) => String(b.createdAt).localeCompare(String(a.createdAt)));
+    const campaigns = [...db.campaigns].sort((a,b) => String(b.creadoEn).localeCompare(String(a.creadoEn)));
     $('#campaign-rows').innerHTML = campaigns.length ? campaigns.map((c) => `<tr><td><span class="cell-primary">${escapeHtml(c.name)}</span></td><td>${escapeHtml(c.objective || 'No especificado')}</td><td>${escapeHtml(c.audience || 'No especificado')}</td><td>${escapeHtml(c.period || 'No especificado')}</td><td><span class="chip chip-purple">Registrada</span></td></tr>`).join('') : emptyRow(5, 'No hay campañas registradas.');
-    const promotions = [...db.promotions].sort((a,b) => String(b.createdAt).localeCompare(String(a.createdAt)));
-    $('#promotion-rows').innerHTML = promotions.length ? promotions.map((p) => `<tr><td><span class="cell-primary">${escapeHtml(p.name)}</span></td><td>${escapeHtml(p.campaignId ? campaignName(p.campaignId) : '—')}</td><td>${escapeHtml(p.criteria || 'No especificados')}</td><td>${escapeHtml(p.description || '—')}</td><td>${formatDate(p.createdAt)}</td></tr>`).join('') : emptyRow(5, 'No hay promociones registradas.');
+    const promotions = [...db.promotions].sort((a,b) => String(b.creadoEn).localeCompare(String(a.creadoEn)));
+    $('#promotion-rows').innerHTML = promotions.length ? promotions.map((p) => `<tr><td><span class="cell-primary">${escapeHtml(p.name)}</span></td><td>${escapeHtml(p.identificadorDeCampana ? campaignName(p.identificadorDeCampana) : '—')}</td><td>${escapeHtml(p.criteria || 'No especificados')}</td><td>${escapeHtml(p.description || '—')}</td><td>${formatDate(p.creadoEn)}</td></tr>`).join('') : emptyRow(5, 'No hay promociones registradas.');
     const checks = [...db.eligibilityChecks].sort((a,b) => String(b.date).localeCompare(String(a.date)));
     $('#eligibility-rows').innerHTML = checks.length ? checks.map((x) => {
-      const hasCommunication = db.communications.some((c) => c.eligibilityId === x.id);
+      const hasCommunication = db.communications.some((c) => c.identificadorDeElegibilidad === x.id);
       const resultLabel = x.result === 'aplica' ? 'Aplica (revisión manual)' : 'No aplica';
       return `<tr><td>${formatDate(x.date)}</td><td>${escapeHtml(clientName(x.code))}</td><td>${escapeHtml(promotionName(x.promotionId))}</td><td><span class="chip ${x.result === 'aplica' ? 'chip-teal' : 'chip-amber'}">${escapeHtml(resultLabel)}</span></td><td>${escapeHtml(x.note || '—')}</td><td>${hasCommunication ? '<span class="chip chip-blue">Constancia local</span>' : '<span class="chip chip-gray">Sin comunicación</span>'}</td></tr>`;
     }).join('') : emptyRow(6, 'No hay revisiones de elegibilidad registradas.');
@@ -412,8 +418,8 @@
     db.clients.forEach((c) => rows.push(['Cliente',c.code,c.name,'',`Gasto: ${c.spend || ''}; Preferencias: ${c.games || ''}; Clasificación: ${classification(c)}`]));
     db.visits.forEach((v) => rows.push([v.kind || 'Actividad',v.code,clientName(v.code),v.date,v.note || '']));
     db.incidents.forEach((i) => rows.push(['Incidencia',i.code || '',i.description,i.date,i.followup || '']));
-    db.campaigns.forEach((c) => rows.push(['Campaña',c.id,c.name,String(c.createdAt).slice(0,10),`Objetivo: ${c.objective || ''}; Público: ${c.audience || ''}; Periodo: ${c.period || ''}`]));
-    db.promotions.forEach((p) => rows.push(['Promoción',p.id,p.name,String(p.createdAt).slice(0,10),`Campaña: ${campaignName(p.campaignId)}; Criterios: ${p.criteria || ''}; Descripción: ${p.description || ''}`]));
+    db.campaigns.forEach((c) => rows.push(['Campaña',c.id,c.name,String(c.creadoEn).slice(0,10),`Objetivo: ${c.objective || ''}; Público: ${c.audience || ''}; Periodo: ${c.period || ''}`]));
+    db.promotions.forEach((p) => rows.push(['Promoción',p.id,p.name,String(p.creadoEn).slice(0,10),`Campaña: ${campaignName(p.identificadorDeCampana)}; Criterios: ${p.criteria || ''}; Descripción: ${p.description || ''}`]));
     db.eligibilityChecks.forEach((x) => rows.push(['Revisión de elegibilidad',x.id,`${clientName(x.code)} / ${promotionName(x.promotionId)}`,x.date,`Resultado manual: ${x.result}; Nota: ${x.note || ''}`]));
     db.communications.forEach((c) => rows.push(['Constancia local',c.code,`${clientName(c.code)} / ${promotionName(c.promotionId)}`,c.date,c.note || 'No se envió un mensaje externo']));
     const csv = '\ufeff' + rows.map((row) => row.map((value) => `"${String(value ?? '').replace(/"/g,'""')}"`).join(',')).join('\r\n');
@@ -447,7 +453,7 @@
     const collision = db.clients.some((c) => c.code.toLowerCase() === code.toLowerCase() && c.code !== editing);
     if (collision) { toast('Ese identificador ya está registrado.'); $('#client-code').focus(); return; }
     const existing = editing ? clientByCode(editing) : null;
-    const item = { code, name, spend: $('#client-spend').value.trim(), games: $('#client-games').value.trim(), segment: $('#client-segment').value.trim(), createdAt: existing?.createdAt || nowISO() };
+    const item = { code, name, spend: $('#client-spend').value.trim(), games: $('#client-games').value.trim(), segment: $('#client-segment').value.trim(), creadoEn: existing?.creadoEn || nowISO() };
     if (existing) Object.assign(existing,item); else db.clients.push(item);
     save(); closeClientForm(); renderAll(); toast(existing ? 'Perfil actualizado.' : 'Cliente registrado.');
   });
@@ -479,12 +485,12 @@
   // Campañas y promociones son entidades separadas.
   $('#campaign-form').addEventListener('submit', (event) => {
     event.preventDefault();
-    db.campaigns.push({ id: makeId('CAM'), name: $('#campaign-name').value.trim(), objective: $('#campaign-objective').value.trim(), audience: $('#campaign-audience').value.trim(), period: $('#campaign-period').value.trim(), createdAt: nowISO() });
+    db.campaigns.push({ id: makeId('CAM'), name: $('#campaign-name').value.trim(), objective: $('#campaign-objective').value.trim(), audience: $('#campaign-audience').value.trim(), period: $('#campaign-period').value.trim(), creadoEn: nowISO() });
     save(); event.target.reset(); renderAll(); toast('Campaña registrada; no se marca como aprobada o publicada.');
   });
   $('#promotion-form').addEventListener('submit', (event) => {
     event.preventDefault();
-    db.promotions.push({ id: makeId('PRO'), name: $('#promotion-name').value.trim(), campaignId: $('#promotion-campaign').value, criteria: $('#promotion-criteria').value.trim(), description: $('#promotion-description').value.trim(), createdAt: nowISO() });
+    db.promotions.push({ id: makeId('PRO'), name: $('#promotion-name').value.trim(), identificadorDeCampana: $('#promotion-campaign').value, criteria: $('#promotion-criteria').value.trim(), description: $('#promotion-description').value.trim(), creadoEn: nowISO() });
     save(); event.target.reset(); renderAll(); toast('Promoción registrada.');
   });
   // La revisión se ingresa manualmente según una regla confirmada; nunca se calcula aquí.
@@ -495,7 +501,7 @@
     const check={ id:makeId('REV'), promotionId, code, result, date:todayISO(), note:$('#eligibility-note').value.trim() };
     db.eligibilityChecks.push(check);
     if (result === 'aplica') {
-      db.communications.push({ id:makeId('COM'), eligibilityId:check.id, promotionId, code, date:todayISO(), note:check.note, localRecord:true });
+      db.communications.push({ id:makeId('COM'), identificadorDeElegibilidad:check.id, promotionId, code, date:todayISO(), note:check.note, registroLocal:true });
       save(); event.target.reset(); renderAll(); toast('Revisión guardada. Se creó una constancia local; no se envió un mensaje.');
     } else {
       save(); event.target.reset(); renderAll(); toast('Revisión guardada como “No aplica”; no se registró comunicación.');

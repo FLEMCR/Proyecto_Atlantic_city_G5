@@ -18,7 +18,9 @@ Aquí viven **todas las guías del proyecto**, juntas para encontrarlas a la pri
 | 10 | `Guia_Codigo_Prototipo_Navegable.md` | Código del prototipo: navegación entre vistas, renders, formularios, exportación CSV y patrones reutilizables |
 | 11 | `Guia_Desarrollo.md` | Arquitectura de la capa de vista, semántica HTML, CSS adaptable, JavaScript del navegador y validaciones implementadas |
 | 12 | `Guia_Informe_de_Avance.md` | Qué contiene cada sección del Word, de qué fuente sale, marcadores por completar y cómo mantenerlo sincronizado |
-| 13 | `Registro_de_verificacion.md` | Comprobaciones ejecutadas sobre código, documentos y ejecución, con su resultado |
+| 13 | `Guia_Diagramas_de_Secuencia_Atlantic_City.md` | Qué muestra una secuencia, las cuatro lifelines y su significado, lectura mensaje por mensaje de CU01 a CU03, fragmentos alt, StarUML clic a clic, errores frecuentes y verificación |
+| 14 | `Guia_Correcciones_UML_Atlantic_City.md` | Criterio de corrección, tabla de cambios frente al documento y los diagramas recibidos, lectura del proceso casos de uso, secuencia y clases, y comprobación propia |
+| 15 | `Registro_de_verificacion.md` | Comprobaciones ejecutadas sobre código, documentos y ejecución, con su resultado |
 
 ## Documentos de trabajo que no son guías
 
