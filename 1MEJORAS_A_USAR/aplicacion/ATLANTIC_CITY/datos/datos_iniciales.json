@@ -1,0 +1,20 @@
+{
+  "clientes": [
+    { "identificador": "AC-001", "nombre": "Cliente de prueba 01", "nivelGasto": "Medio", "preferencias": "Preferencia de prueba A", "clasificacion": "", "creadoEn": "2026-09-28", "demo": true },
+    { "identificador": "AC-002", "nombre": "Cliente de prueba 02", "nivelGasto": "Medio", "preferencias": "Preferencia de prueba B", "clasificacion": "", "creadoEn": "2026-09-28", "demo": true },
+    { "identificador": "AC-003", "nombre": "Cliente de prueba 03", "nivelGasto": "", "preferencias": "Por definir", "clasificacion": "", "creadoEn": "2026-09-28", "demo": true }
+  ],
+  "visitas": [
+    { "id": "ATT-0001", "cliente": "AC-001", "tipo": "Visita", "fecha": "2026-09-28", "nota": "Registro de ejemplo", "incidencia": null, "creadoEn": "2026-09-28", "demo": true },
+    { "id": "ATT-0002", "cliente": "AC-002", "tipo": "Interacción", "fecha": "2026-09-28", "nota": "Registro de ejemplo", "incidencia": null, "creadoEn": "2026-09-28", "demo": true }
+  ],
+  "incidencias": [],
+  "campanas": [
+    { "id": "CAMP-0001", "nombre": "Campaña de prueba", "objetivo": "Por definir", "publico": "Criterios por confirmar", "periodo": "Por definir", "creadoEn": "2026-09-28", "demo": true }
+  ],
+  "promociones": [
+    { "id": "PROMO-0001", "nombre": "Promoción de prueba", "campana": "CAMP-0001", "criterios": "Criterios por confirmar", "descripcion": "Registro de ejemplo", "creadoEn": "2026-09-28", "demo": true }
+  ],
+  "revisiones": [],
+  "constancias": []
+}

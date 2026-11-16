@@ -1,0 +1,66 @@
+/* Atlantic City — hoja de estilos de la aplicación final.
+   Paleta del proyecto: navy #243753, crema #ece8e3, oro #cfa137. */
+:root{
+  --navy:#243753; --navy-2:#2e4568; --crema:#ece8e3; --oro:#cfa137;
+  --tinta:#20242a; --gris:#6b7280; --borde:#d8d2c9; --ok:#2e7d32; --peligro:#b3261e;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",Calibri,Arial,sans-serif;background:var(--crema);color:var(--tinta)}
+.marco{display:flex;min-height:100vh}
+.menu{width:230px;flex:none;background:var(--navy);color:#fff;padding:18px 14px;display:flex;flex-direction:column;gap:16px}
+.marca strong{display:block;font-size:19px;letter-spacing:.4px}
+.marca span{font-size:12px;color:#cdd6e4}
+.menu nav{display:flex;flex-direction:column;gap:6px}
+.menu nav button{background:transparent;border:1px solid transparent;color:#e6ebf3;text-align:left;padding:9px 10px;border-radius:8px;font-size:14px;cursor:pointer}
+.menu nav button:hover{background:var(--navy-2)}
+.menu nav button.activo{background:var(--oro);color:#20242a;font-weight:600}
+.nota-menu{font-size:11px;color:#aeb9cc;line-height:1.5}
+main{flex:1;padding:20px 26px;min-width:0}
+.cabecera{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--navy);padding-bottom:10px;margin-bottom:18px}
+.cabecera h1{margin:0;font-size:24px;color:var(--navy)}
+.cabecera-datos{display:flex;gap:12px;align-items:center;font-size:13px;color:var(--gris)}
+.badge-demo{background:var(--oro);color:#20242a;border-radius:20px;padding:3px 12px;font-size:12px;font-weight:600}
+.vista{display:none}
+.vista.visible{display:block}
+.dos-col{display:grid;grid-template-columns:1fr 1.25fr;gap:16px;margin-bottom:16px}
+.tres-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.panel{background:#fff;border:1px solid var(--borde);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+.panel h2{margin:2px 0 12px;font-size:16px;color:var(--navy)}
+.tarjetas{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:16px}
+.tarjeta{background:#fff;border:1px solid var(--borde);border-left:5px solid var(--oro);border-radius:10px;padding:12px 14px}
+.tarjeta strong{display:block;font-size:24px;color:var(--navy)}
+.tarjeta span{font-size:12px;color:var(--gris)}
+label{display:block;font-size:13px;margin-bottom:10px;color:var(--tinta)}
+input,select,textarea{width:100%;margin-top:4px;padding:8px 9px;border:1px solid var(--borde);border-radius:6px;font-size:14px;font-family:inherit;background:#fff}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--oro);border-color:var(--oro)}
+.check{display:flex;gap:8px;align-items:center;font-size:14px}
+.check input{width:auto;margin:0}
+.fila-botones{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap}
+button{cursor:pointer;border:none;border-radius:6px;padding:9px 16px;font-size:14px;font-family:inherit}
+.btn-guardar{background:var(--navy);color:#fff}
+.btn-guardar:hover{background:var(--navy-2)}
+.btn-suave{background:#fff;border:1px solid var(--borde);color:var(--tinta)}
+.btn-peligro{background:#fff;border:1px solid var(--peligro);color:var(--peligro)}
+.btn-mini{background:#fff;border:1px solid var(--borde);padding:4px 9px;font-size:12px;border-radius:5px}
+.btn-mini:hover{border-color:var(--navy)}
+.filtros{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;align-items:end}
+.filtros input,.filtros select{margin:0;width:auto;min-width:150px}
+.filtro-item{margin:0;font-size:12px;color:var(--gris)}
+.filtro-item input{margin-top:2px}
+.tabla-caja{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--navy);color:#fff;text-align:left;padding:7px 9px;font-weight:600}
+td{border-bottom:1px solid var(--borde);padding:7px 9px;vertical-align:top}
+tr:nth-child(even) td{background:#faf8f5}
+.vacio{color:var(--gris);font-style:italic;padding:10px 2px}
+.ayuda{font-size:12px;color:var(--gris);line-height:1.5}
+.criterios{margin:0 0 8px;padding-left:20px;font-size:13px;line-height:1.7}
+.lista-actividad{list-style:none;margin:0;padding:0;font-size:13px}
+.lista-actividad li{border-bottom:1px dashed var(--borde);padding:7px 2px}
+.etiqueta{display:inline-block;background:var(--crema);border:1px solid var(--borde);border-radius:12px;padding:1px 10px;font-size:12px}
+.etiqueta.demo{background:#fff3d6;border-color:var(--oro)}
+#avisos{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:8px;z-index:50}
+.aviso{background:var(--navy);color:#fff;border-left:5px solid var(--oro);border-radius:8px;padding:10px 16px;font-size:13px;box-shadow:0 4px 14px rgba(0,0,0,.25);max-width:380px}
+.aviso code{color:var(--oro);font-weight:700;margin-right:6px}
+.aviso.error{border-left-color:var(--peligro)}
+@media (max-width:980px){.dos-col,.tres-col{grid-template-columns:1fr}.tarjetas{grid-template-columns:repeat(3,1fr)}.marco{flex-direction:column}.menu{width:auto}}

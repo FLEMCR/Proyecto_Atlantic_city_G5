@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlantic City — Gestión unificada de clientes</title>
+<link rel="icon" type="image/svg+xml" href="imagenes/favicon.svg">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<div class="marco">
+  <aside class="menu">
+    <div class="marca">
+      <strong>Atlantic City</strong>
+      <span>Gestión unificada de clientes</span>
+    </div>
+    <nav>
+      <button data-vista="inicio" class="activo">Inicio</button>
+      <button data-vista="clientes">Clientes</button>
+      <button data-vista="visitas">Visitas e interacciones</button>
+      <button data-vista="incidencias">Incidencias</button>
+      <button data-vista="segmentacion">Segmentación</button>
+      <button data-vista="marketing">Promociones y campañas</button>
+      <button data-vista="reportes">Reportes</button>
+    </nav>
+    <p class="nota-menu">Los datos viven solo en este navegador (localStorage). No hay conexión con sistemas reales de Atlantic City.</p>
+  </aside>
+
+  <main>
+    <header class="cabecera">
+      <h1 id="titulo-vista">Inicio</h1>
+      <div class="cabecera-datos">
+        <span class="badge-demo" id="badge-demo">Datos de demostración</span>
+        <span id="fecha-hoy"></span>
+      </div>
+    </header>
+
+    <!-- INICIO / DASHBOARD -->
+    <section id="vista-inicio" class="vista">
+      <div class="tarjetas" id="tablero-tarjetas"></div>
+      <div class="dos-col">
+        <div class="panel">
+          <h2>Actividad reciente</h2>
+          <div id="tablero-actividad"></div>
+        </div>
+        <div class="panel">
+          <h2>Cuatro criterios de segmentación</h2>
+          <ol class="criterios">
+            <li>Frecuencia de visitas (solo suman las de tipo Visita, RN06)</li>
+            <li>Nivel de gasto</li>
+            <li>Preferencias de juegos</li>
+            <li>Historial de promociones</li>
+          </ol>
+          <p class="ayuda">La clasificación se registra a mano en la vista Segmentación: el sistema no calcula segmentos (RN04).</p>
+          <h2>Marketing</h2>
+          <div id="tablero-marketing"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENTES -->
+    <section id="vista-clientes" class="vista">
+      <div class="dos-col">
+        <div class="panel">
+          <h2 id="cliente-form-titulo">Registrar cliente</h2>
+          <form id="form-cliente" novalidate>
+            <input type="hidden" id="cliente-original" value="">
+            <label>Identificador de referencia *
+              <input id="cliente-id" type="text" maxlength="20" placeholder="AC-004">
+            </label>
+            <label>Nombre del cliente *
+              <input id="cliente-nombre" type="text" maxlength="80" placeholder="Nombre y apellido">
+            </label>
+            <label>Nivel de gasto (dato disponible)
+              <select id="cliente-gasto">
+                <option value="">Por definir</option>
+                <option>Bajo</option><option>Medio</option><option>Alto</option>
+              </select>
+            </label>
+            <label>Preferencias de juegos
+              <input id="cliente-pref" type="text" maxlength="80" placeholder="Por definir">
+            </label>
+            <div class="fila-botones">
+              <button type="submit" class="btn-guardar">Guardar perfil</button>
+              <button type="button" id="cliente-cancelar" class="btn-suave">Cancelar</button>
+            </div>
+          </form>
+          <p class="ayuda">El identificador es único (RN07): un alta con identificador existente se bloquea. Los perfiles no se eliminan porque conservan el historial de atención (RN01).</p>
+        </div>
+        <div class="panel">
+          <h2>Base de clientes</h2>
+          <div class="filtros">
+            <input id="cliente-buscar" type="search" placeholder="Buscar por identificador o nombre">
+            <select id="cliente-filtro-clase">
+              <option value="">Todas las clasificaciones</option>
+            </select>
+          </div>
+          <div class="tabla-caja"><table id="tabla-clientes"></table></div>
+        </div>
+      </div>
+      <div class="panel" id="ficha-cliente" hidden>
+        <h2>Ficha e historial</h2>
+        <div id="ficha-cliente-cuerpo"></div>
+        <button class="btn-suave" id="ficha-cerrar">Cerrar ficha</button>
+      </div>
+    </section>
+
+    <!-- VISITAS E INTERACCIONES -->
+    <section id="vista-visitas" class="vista">
+      <div class="dos-col">
+        <div class="panel">
+          <h2>Registrar visita o interacción</h2>
+          <form id="form-visita" novalidate>
+            <label>Cliente *
+              <select id="visita-cliente"><option value="">Selecciona un cliente</option></select>
+            </label>
+            <label>Tipo de actividad *
+              <select id="visita-tipo"><option>Visita</option><option>Interacción</option></select>
+            </label>
+            <label>Fecha *
+              <input id="visita-fecha" type="date">
+            </label>
+            <label>Nota de atención (opcional)
+              <textarea id="visita-nota" maxlength="200" rows="2"></textarea>
+            </label>
+            <label class="check"><input id="visita-incidencia" type="checkbox"> Registrar una incidencia</label>
+            <label id="caja-incidencia" hidden>Descripción de la incidencia *
+              <textarea id="visita-inc-descripcion" maxlength="200" rows="2"></textarea>
+            </label>
+            <div class="fila-botones"><button type="submit" class="btn-guardar">Guardar actividad</button></div>
+          </form>
+          <p class="ayuda">La visita o interacción se conserva en el historial aunque no haya incidencia ni promoción (RN01).</p>
+        </div>
+        <div class="panel">
+          <h2>Historial de atención</h2>
+          <div class="filtros">
+            <select id="visita-filtro-cliente"><option value="">Todos los clientes</option></select>
+            <input id="visita-buscar" type="search" placeholder="Buscar en notas">
+          </div>
+          <div class="tabla-caja"><table id="tabla-visitas"></table></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INCIDENCIAS -->
+    <section id="vista-incidencias" class="vista">
+      <div class="dos-col">
+        <div class="panel">
+          <h2>Nota de seguimiento</h2>
+          <form id="form-seguimiento" novalidate>
+            <label>Incidencia *
+              <select id="seg-incidencia"><option value="">Selecciona una incidencia</option></select>
+            </label>
+            <label>Nota de seguimiento *
+              <textarea id="seg-nota" maxlength="200" rows="2" placeholder="Qué se hizo o qué se acordó"></textarea>
+            </label>
+            <div class="fila-botones"><button type="submit" class="btn-guardar">Guardar nota</button></div>
+          </form>
+          <p class="ayuda">Los estados, plazos y responsables de incidencias se definen con el Product Owner; aquí se conservan la descripción y las notas.</p>
+        </div>
+        <div class="panel">
+          <h2>Incidencias registradas</h2>
+          <div class="tabla-caja"><table id="tabla-incidencias"></table></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEGMENTACIÓN -->
+    <section id="vista-segmentacion" class="vista">
+      <div class="dos-col">
+        <div class="panel">
+          <h2>Consultar perfil y clasificar</h2>
+          <label>Cliente
+            <select id="seg-cliente"><option value="">Selecciona un cliente</option></select>
+          </label>
+          <div id="seg-criterios"></div>
+          <form id="form-etiqueta" novalidate>
+            <label>Etiqueta manual del segmento
+              <input id="seg-etiqueta" type="text" maxlength="40" placeholder="Por ejemplo: cliente frecuente">
+            </label>
+            <div class="fila-botones"><button type="submit" class="btn-guardar">Guardar etiqueta</button></div>
+          </form>
+          <p class="ayuda">Esta versión no aplica fórmula automática ni umbrales inventados: la clasificación es manual (RN04).</p>
+        </div>
+        <div class="panel">
+          <h2>Perfiles y criterios disponibles</h2>
+          <div class="tabla-caja"><table id="tabla-segmentacion"></table></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMOCIONES Y CAMPAÑAS -->
+    <section id="vista-marketing" class="vista">
+      <div class="dos-col">
+        <div class="panel">
+          <h2>Registrar campaña</h2>
+          <form id="form-campana" novalidate>
+            <input type="hidden" id="campana-original" value="">
+            <label>Nombre de la campaña *
+              <input id="campana-nombre" type="text" maxlength="60">
+            </label>
+            <label>Objetivo (opcional)<input id="campana-objetivo" type="text" maxlength="80"></label>
+            <label>Público y criterios (opcional)<input id="campana-publico" type="text" maxlength="80"></label>
+            <label>Periodo o vigencia (opcional)<input id="campana-periodo" type="text" maxlength="40"></label>
+            <div class="fila-botones">
+              <button type="submit" class="btn-guardar">Guardar campaña</button>
+              <button type="button" id="campana-cancelar" class="btn-suave" hidden>Cancelar edición</button>
+            </div>
+          </form>
+          <p class="ayuda">Guardar una campaña no la marca como aprobada ni publicada: el mecanismo de aprobación lo confirma el Product Owner.</p>
+          <h2>Registrar promoción</h2>
+          <form id="form-promocion" novalidate>
+            <input type="hidden" id="promocion-original" value="">
+            <label>Nombre de la promoción *
+              <input id="promocion-nombre" type="text" maxlength="60">
+            </label>
+            <label>Campaña relacionada (opcional)
+              <select id="promocion-campana"><option value="">Sin campaña vinculada</option></select>
+            </label>
+            <label>Criterios de aplicación (opcional)<input id="promocion-criterios" type="text" maxlength="80"></label>
+            <label>Descripción (opcional)<input id="promocion-descripcion" type="text" maxlength="120"></label>
+            <div class="fila-botones">
+              <button type="submit" class="btn-guardar">Guardar promoción</button>
+              <button type="button" id="promocion-cancelar" class="btn-suave" hidden>Cancelar edición</button>
+            </div>
+          </form>
+          <p class="ayuda">Campaña y promoción son entidades distintas: una promoción puede existir sin campaña (RN05).</p>
+        </div>
+        <div class="panel">
+          <h2>Campañas registradas</h2>
+          <div class="tabla-caja"><table id="tabla-campanas"></table></div>
+          <h2>Promociones registradas</h2>
+          <div class="tabla-caja"><table id="tabla-promociones"></table></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Registrar resultado de elegibilidad (revisión manual)</h2>
+        <form id="form-elegibilidad" novalidate>
+          <div class="tres-col">
+            <label>Promoción *
+              <select id="eleg-promocion"><option value="">Selecciona una promoción</option></select>
+            </label>
+            <label>Cliente *
+              <select id="eleg-cliente"><option value="">Selecciona un cliente</option></select>
+            </label>
+            <label>Resultado de revisión *
+              <select id="eleg-resultado" disabled>
+                <option value="">Selecciona una promoción primero</option>
+                <option value="Aplica">Aplica — validación manual según la regla aprobada</option>
+                <option value="No aplica">No aplica</option>
+              </select>
+            </label>
+          </div>
+          <label>Nota (opcional)<input id="eleg-nota" type="text" maxlength="120"></label>
+          <div class="fila-botones"><button type="submit" class="btn-guardar">Guardar resultado</button></div>
+        </form>
+        <p class="ayuda">«No aplica» guarda la revisión sin registrar comunicación (RN02). «Aplica» crea una constancia local: no se envía correo ni mensaje (RN03).</p>
+        <h2>Revisiones y constancias registradas</h2>
+        <div class="tabla-caja"><table id="tabla-revisiones"></table></div>
+      </div>
+    </section>
+
+    <!-- REPORTES -->
+    <section id="vista-reportes" class="vista">
+      <div class="panel">
+        <h2>Reporte de actividad</h2>
+        <div class="filtros">
+          <label class="filtro-item">Desde <input id="rep-desde" type="date"></label>
+          <label class="filtro-item">Hasta <input id="rep-hasta" type="date"></label>
+          <select id="rep-cliente"><option value="">Todos los clientes</option></select>
+          <select id="rep-tipo">
+            <option value="">Visitas e interacciones</option><option>Visita</option><option>Interacción</option>
+          </select>
+          <button id="rep-aplicar" class="btn-suave">Aplicar filtros</button>
+          <button id="rep-csv" class="btn-guardar">Exportar CSV de lo mostrado</button>
+        </div>
+        <p class="ayuda" id="rep-resumen"></p>
+        <div class="tabla-caja"><table id="tabla-reporte"></table></div>
+      </div>
+      <div class="dos-col">
+        <div class="panel">
+          <h2>Constancias locales</h2>
+          <div class="tabla-caja"><table id="tabla-constancias"></table></div>
+        </div>
+        <div class="panel">
+          <h2>Respaldo de datos</h2>
+          <p class="ayuda">Exporta todo el almacenamiento local a un archivo JSON para llevarlo a otra máquina, o importa un respaldo previo. Patron del curso: Blob para exportar y FileReader para importar.</p>
+          <div class="fila-botones">
+            <button id="resp-exportar" class="btn-guardar">Exportar respaldo JSON</button>
+            <button id="resp-importar-btn" class="btn-suave">Importar respaldo JSON</button>
+            <input id="resp-importar" type="file" accept=".json" hidden>
+            <button id="resp-limpiar" class="btn-peligro">Restablecer datos de demostración</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="avisos" aria-live="polite"></div>
+<script src="js/principal.js"></script>
+<script src="js/clientes.js"></script>
+<script src="js/visitas.js"></script>
+<script src="js/promociones.js"></script>
+<script src="js/reportes.js"></script>
+</body>
+</html>

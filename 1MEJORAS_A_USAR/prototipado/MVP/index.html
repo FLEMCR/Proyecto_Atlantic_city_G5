@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#29251f">
+  <title>Atlantic City — MVP sencillo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">≈</div>
+      <div><strong>ATLANTIC CITY</strong><small>Atención al cliente · MVP</small></div>
+    </div>
+    <div class="topbar-meta"><span class="demo-badge">Datos de demostración</span><span id="today-label">Hoy</span></div>
+  </header>
+
+  <main>
+    <div class="page-title">
+      <div><p class="kicker">RECORRIDO BÁSICO</p><h1>Registrar visita o interacción</h1><p class="subtitle">Una atención, su historial y una revisión promocional manual, si corresponde.</p></div>
+      <span class="step-badge">Prototipo local</span>
+    </div>
+
+    <div class="main-grid">
+      <section class="panel form-panel">
+        <form id="attention-form">
+          <h2>1. Perfil y datos disponibles</h2>
+          <div class="form-grid">
+            <label>Identificador *<input id="client-code" required maxlength="32" autocomplete="off" placeholder="Ej. AC-001"></label>
+            <label>Nombre *<input id="client-name" required maxlength="90" autocomplete="off" placeholder="Nombre para el perfil"></label>
+            <label>Nivel de gasto<input id="client-spend" maxlength="80" placeholder="Dato disponible / por definir"></label>
+            <label>Preferencias de juegos<input id="client-games" maxlength="120" placeholder="Dato disponible / por definir"></label>
+            <label class="full">Clasificación manual<input id="client-segment" maxlength="60" placeholder="Etiqueta acordada (no se calcula)"></label>
+          </div>
+
+          <div class="criteria-strip" aria-live="polite">
+            <div><span>Frecuencia de visitas</span><strong id="criteria-visits">0</strong><small>registros «Visita» · periodo por definir</small></div>
+            <div><span>Historial de promociones</span><strong id="criteria-promotions">0</strong><small>constancias locales</small></div>
+          </div>
+
+          <h2>2. Registrar la atención</h2>
+          <div class="form-grid">
+            <label>Tipo de actividad<select id="activity-kind"><option>Visita</option><option>Interacción</option></select></label>
+            <label>Fecha<input id="activity-date" type="date" required></label>
+            <label class="full">Nota de atención (opcional)<textarea id="activity-note" rows="2" maxlength="400" placeholder="Detalle breve de la visita o interacción"></textarea></label>
+          </div>
+
+          <h2>3. Opcionales</h2>
+          <label class="check-row"><input type="checkbox" id="incident-toggle"><span>Registrar una incidencia</span><small>La visita se conserva aunque no haya incidencia.</small></label>
+          <div id="incident-fields" class="incident-fields hidden">
+            <label>Descripción de la incidencia *<textarea id="incident-description" rows="2" maxlength="400" placeholder="Describe brevemente lo reportado"></textarea></label>
+          </div>
+          <div class="form-grid marketing-grid">
+            <label>Campaña relacionada (opcional)<select id="campaign-select"><option value="">Sin campaña vinculada</option></select></label>
+            <label>Promoción evaluada (opcional)<select id="promotion-select"><option value="">Sin promoción</option></select></label>
+            <label class="full">Resultado de elegibilidad — revisión manual<select id="eligibility-select" disabled><option value="">Selecciona una promoción primero</option><option value="aplica">Aplica</option><option value="no-aplica">No aplica</option></select></label>
+          </div>
+          <p class="hint">Campaña = planificación; promoción = oferta concreta. La regla no se calcula aquí: el resultado se ingresa manualmente según una definición confirmada por el PO.</p>
+          <div class="form-actions">
+            <button class="button button-primary" type="submit">✓ Registrar atención</button>
+            <button class="button button-quiet" type="button" id="clear-form">Limpiar</button>
+          </div>
+          <div class="message" id="form-message" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <section class="panel preview-panel">
+        <h2>4. Resumen de la atención</h2>
+        <div class="receipt">
+          <div class="receipt-head"><span>REGISTRO LOCAL</span><strong id="receipt-id">—</strong></div>
+          <div class="receipt-title" id="receipt-title">Completa los datos del cliente</div>
+          <div class="receipt-meta" id="receipt-meta">El resumen se actualiza al llenar el formulario.</div>
+          <hr>
+          <div class="receipt-row"><span>Cliente</span><strong id="preview-client">—</strong></div>
+          <div class="receipt-row"><span>Actividad</span><strong id="preview-activity">—</strong></div>
+          <div class="receipt-row"><span>Campaña</span><strong id="preview-campaign">Sin campaña</strong></div>
+          <div class="receipt-row"><span>Promoción</span><strong id="preview-promotion">Sin promoción</strong></div>
+          <div class="receipt-row"><span>Resultado</span><strong id="preview-result">Sin revisión</strong></div>
+          <div class="receipt-row"><span>Incidencia</span><strong id="preview-incident">No registrada</strong></div>
+          <div class="receipt-note" id="receipt-note">La comunicación no se envía desde este prototipo.</div>
+        </div>
+
+        <div class="criteria-card">
+          <h3>Cuatro criterios consultados</h3>
+          <div class="criteria-list">
+            <div><span>Frecuencia de visitas</span><strong id="preview-frequency">0 visitas</strong><small>Periodo no definido</small></div>
+            <div><span>Nivel de gasto</span><strong id="preview-spend">No disponible</strong></div>
+            <div><span>Preferencias de juegos</span><strong id="preview-games">No disponible</strong></div>
+            <div><span>Historial de promociones</span><strong id="preview-history">0 constancias locales</strong></div>
+          </div>
+          <div class="manual-label"><span>Clasificación manual</span><strong id="preview-segment">Sin clasificar</strong></div>
+        </div>
+
+        <div class="note"><strong>Importante</strong><br>«No aplica» guarda la revisión, pero no registra comunicación. «Aplica» crea una constancia local; no envía correo ni mensaje.</div>
+      </section>
+    </div>
+
+    <section class="panel section-panel">
+      <div class="section-heading"><div><h2>Resumen local</h2><p>Conteos de los registros de demostración en este navegador; no son indicadores oficiales.</p></div></div>
+      <div class="stats-grid">
+        <div class="stat-box"><span>Perfiles</span><strong id="stat-clients">0</strong></div>
+        <div class="stat-box"><span>Visitas e interacciones</span><strong id="stat-attentions">0</strong></div>
+        <div class="stat-box"><span>Incidencias</span><strong id="stat-incidents">0</strong></div>
+        <div class="stat-box"><span>Constancias locales</span><strong id="stat-communications">0</strong></div>
+      </div>
+    </section>
+
+    <section class="panel section-panel">
+      <div class="section-heading"><div><h2>Historial reciente</h2><p>Visitas e interacciones conservadas, con o sin incidencia.</p></div></div>
+      <div id="recent-list" class="record-list"></div>
+    </section>
+
+    <footer>Datos guardados únicamente en este navegador · Sin integración real ni envío externo · Automatización opcional no implementada</footer>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>

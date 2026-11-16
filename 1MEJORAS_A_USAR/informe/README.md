@@ -1,0 +1,9 @@
+# Informe de avance
+
+Entregable documental del proyecto, construido con la estructura propuesta por el profesor.
+
+- `Avance_Atlantic_City.docx`: informe con portada y los quince puntos de la estructura: descripción del negocio, problema, procesos, diagrama en Bizagi, Scrum, Product Backlog, historias de usuario, wireframes, MVP, prototipo con navegación, implementación mínima, casos de uso, descripción de casos, diagramas de secuencia y diagrama de clases.
+- `Atlantic_City_PARCIAL_G5.docx`: avance del parcial listo para la revisión del profesor, con el nombre y el contenido del PDF que entregó el equipo (`../../uploads/Atlantic_City_PARCIAL_G5.pdf`) y completado hasta el diagrama de clases: portada con los datos del equipo, secciones 1 a 10 idénticas al PDF (descripción, problema, procesos, Bizagi con las dos figuras en alta resolución, Scrum, backlog, las trece historias, wireframe, MVP y prototipo) y, agregadas desde el informe final, la implementación mínima, los casos de uso con su diagrama, las fichas CU01 a CU04 con reglas, excepciones y mensajes, los tres diagramas de secuencia y el diagrama de clases. Termina en clases; no incluye el estado del avance ni las conclusiones. La sección 13.2 lleva la matriz de trazabilidad completa exigida por la ficha de evaluación (historia, caso de uso, reglas, excepciones, secuencia, clases, vistas y Sprint). Las secciones 9 y 10 llevan el enlace clickable a la versión publicada en Netlify para la revisión del profesor: `https://atlantic-mvp-grupo5.netlify.app` (MVP) y `https://atlantic-prototipo-grupo5.netlify.app` (prototipo).
+- `../docs/Guia_Informe_de_Avance.md`: qué contiene cada sección, de qué fuente sale, qué datos faltan por completar a mano y cómo mantenerlo sincronizado con el resto del repositorio.
+
+Antes de entregar: abrir el documento, completar los marcadores entre corchetes (integrantes, docente, carrera) y repasar la lista de verificación de la guía.
